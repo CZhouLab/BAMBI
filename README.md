@@ -8,15 +8,9 @@ BAMBI (Biostatistics and Artificial-Intelligence integrated methods for Biomarke
 
 ![workflow](Picture_1_2.jpg)
 
-**Please cite our paper at *Non-Coding RNA* journal (https://doi.org/10.3390/ncrna8050070), if you find Flnc useful for your research. 
+Authors: Peng Zhou (peng.zhou@umassmed.edu), Chan Zhou (chan.zhou@umassmed.edu)
 
-Version: 1.0.0
-
-Last Modified: 07/27/2022
-
-Authors: Zixiu Li (zixiu.li@umassmed.edu), Chan Zhou (chan.zhou@umassmed.edu)
-
-Maintainer: Zixiu Li
+Maintainer: Peng Zhou
 
 
 ## Prerequisites
