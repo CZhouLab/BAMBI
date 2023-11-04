@@ -1,4 +1,4 @@
-# Flnc BAMBI
+# BAMBI: Integrative biostatistical and artificial-intelligence models discover coding and noncoding RNA genes as biomarkers
 
 ## Introduction
 
@@ -6,7 +6,7 @@ Flnc is software that can accurately identify full-length long noncoding RNAs (l
 
 Flnc integrates seven machine-learning algorithms built with four genomic features. Flnc achieves state-of-the-art prediction power with a AUROC score over 0.92. Flnc significantly improves the prediction accuracy from less than 50% using the common approach to over 85% on five independent datasets without requiring matched H3K4me3 ChIP-seq data. In addition to the stranded polyA-selected RNA-seq data, Flnc can also be applied to identify lncRNAs from stranded RNA-seq data of ribosomal RNA depleted samples or unstranded RNA-seq data of polyA-selected samples. 
 
-![workflow](Picture1.png)
+![workflow](Picture_1.jpg)
 
 **Please cite our paper at *Non-Coding RNA* journal (https://doi.org/10.3390/ncrna8050070), if you find Flnc useful for your research. 
 
