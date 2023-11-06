@@ -72,9 +72,9 @@ it needs to input a table which includes the sequecning files information, relat
 
 
 
-### 1.statitical_based_feature_selection_info_generation.py
+## 1.statitical_based_feature_selection_info_generation.py
 
-#### Parameter:
+### Parameter:
 
 •       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
 
@@ -94,9 +94,9 @@ User can use this table to select thresholds for different metrics.
 
 
 
-### 1.statitical_based_feature_selection_info_generation.py
+## 1.statitical_based_feature_selection_info_generation.py
 
-#### Parameter:
+### Parameter:
 
 •       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
 
