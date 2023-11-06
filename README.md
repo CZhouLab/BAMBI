@@ -47,7 +47,7 @@ To use BAMBI, you will need the following programs in your PATH:
 
 ## Usage
 
-### 0.RNASeq_Preprocessing.py
+## 0.RNASeq_Preprocessing.py
 
 it needs to input a table which includes the sequecning files information, relative sample files provided: 
 
@@ -59,7 +59,7 @@ it needs to input a table which includes the sequecning files information, relat
 
 •       Strandness information "Strandness" (""first", "second" or "unstrand")
 
-#### Parameter:
+### Parameter:
 
 •       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA" or both)
 
