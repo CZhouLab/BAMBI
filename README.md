@@ -118,5 +118,5 @@ User can use this table to select thresholds for different metrics.
 
 •       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
 
-•       self-defined dataset name: "dataset_name": (any customized name)
+•       self-defined dataset name: "dataset_name": (need to same as the dataset name used in last step)
 
