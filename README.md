@@ -86,7 +86,7 @@ it will generate a statitical metrics table for each genes, include:
 
 •       "overlap_area": between-group estimate distribution overlap area
 
-User can use this table to select thresholds for different metrics.
+User can use this table to select thresholds for different metrics, this table saved in "./Gene_info.csv'.
 
 ### Parameter:
 
@@ -101,6 +101,17 @@ User can use this table to select thresholds for different metrics.
 ### Parameter:
 
 •       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
+
+•       target differential expression pvalue type for gene filter: "target_pvalue_type": ("pvalue" or "padj")
+
+•       target differential expression pvalue threshold for gene filter: "target_pvalue_threshold": (float type, [0, 1], suggest <= 0.05)
+
+•       target foldchange threshold for gene filter: "target_foldchange_threshold": (float type, [0, inf), suggest 1 or 0.585)
+
+•       target threshold for Low-Expression Genes Filter: "target_maxmin_remove_threshold": (float type, suggest 1.0 for protein coding, 0.01 for lncRNA)
+
+•       target threshold for high distribution overlap Genes Filter: "target_overlap_area_threshold": (float type, [0, 1])
+
 
 
 
