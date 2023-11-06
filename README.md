@@ -45,15 +45,21 @@ To use BAMBI, you will need the following programs in your PATH:
 
 
 
-## Installation
+## Usage
 
-### Step 1: Download Flnc software from GitHub
-```bash
-cd /home/username/
-git clone https://github.com/CZhouLab/Flnc
-cd Flnc
-chmod 755 *.py
-```
+### 0.RNASeq_Preprocessing.py
+
+input file sample: 0.RNASeq_preprocessing_input_sample.csv
+
+it needs to include the information(relative sample files provided in Github): 
+•       "sample_name"
+
+•       Catergory information: "Label" ("C" for Control and "T" for "Treatment")
+
+•       Sequencing file path ("unpaired_input" for Single-End, and "R1_input" & "R2_input" for Paired-End)
+
+•       Strandness information "Strandness" (""first", "second" or "unstrand")
+
 
 ### Step 2: Download LIB folder from Zenodo
 ```bash
