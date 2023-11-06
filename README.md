@@ -74,10 +74,6 @@ it needs to input a table which includes the sequecning files information, relat
 
 ## 1.statitical_based_feature_selection_info_generation.py
 
-### Parameter:
-
-•       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
-
 it will generate a statitical metrics table for each genes, include: 
 
 •       "pvalue": pvalue from selected differential expression analysis
@@ -92,25 +88,35 @@ it will generate a statitical metrics table for each genes, include:
 
 User can use this table to select thresholds for different metrics.
 
+### Parameter:
+
+•       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
 
 
-## 1.statitical_based_feature_selection_info_generation.py
+
+
+
+## 2.statitical_based_feature_selection_gene_filter.py
 
 ### Parameter:
 
 •       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
 
-it will generate a statitical metrics table for each genes, include: 
 
-•       "pvalue": pvalue from selected differential expression analysis
 
-•       "padj": adjust pvalue from selected differential expression analysis
+## 3_machine_learning_based_feature_selection_10CV.py
 
-•       "abs(log2(fold-change))": fold change from Fold Change analysis 
+### Parameter:
 
-•       "max_val": the maximum expression in all sample, used for Low-Expression Genes Filter  
+•       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
 
-•       "overlap_area": between-group estimate distribution overlap area
+•       self-defined dataset name: "dataset_name": (any customized name)
 
-User can use this table to select thresholds for different metrics.
+## 4_result_collection.py
+
+### Parameter:
+
+•       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
+
+•       self-defined dataset name: "dataset_name": (any customized name)
 
