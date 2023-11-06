@@ -1,4 +1,4 @@
-![image](https://github.com/CZhouLab/BAMBI/assets/88337187/43427e7d-184f-49ff-89cc-ed26ec4d00c6)# BAMBI: Integrative biostatistical and artificial-intelligence models discover coding and noncoding RNA genes as biomarkers
+# BAMBI: Integrative biostatistical and artificial-intelligence models discover coding and noncoding RNA genes as biomarkers
 
 ## Introduction
 
