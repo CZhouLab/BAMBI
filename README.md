@@ -1,4 +1,4 @@
-# BAMBI: Integrative biostatistical and artificial-intelligence models discover coding and noncoding RNA genes as biomarkers
+![image](https://github.com/CZhouLab/BAMBI/assets/88337187/43427e7d-184f-49ff-89cc-ed26ec4d00c6)# BAMBI: Integrative biostatistical and artificial-intelligence models discover coding and noncoding RNA genes as biomarkers
 
 ## Introduction
 
@@ -15,17 +15,31 @@ Maintainer: Peng Zhou
 
 ## Prerequisites
 
-To use Flnc, you will need the following programs in your PATH:
+To use BAMBI, you will need the following programs in your PATH:
 
-•       singularity (>=3.7.1)
-
-•       python2 (>=2.7) 
-
-•       gcc (>=4.8.5)
-
+•       python3 (>=3.7.3) 
+•       python packages:
+•       	numpy
+•       	pandas
+•       	scikit-learn (>=0.22.1)
+•       	kdepy (conda install -c dmentipl kdepy)
+•       	shap (conda install -c conda-forge shap)
+•       
+•       R (>=3.7.3) 
+•       R packages:
+•       	edgeR
+•       	limma
+•       	impute
+•       	GenomicFeatures (if you need to use customize annotation GTF file)
+•       
+•       Softwares required for RNA-seq data preprocessing
+•       htseq (>=0.6.1)
+•       pysam (>=0.8.4)
+•       hisat2 (>=2.0.5)
+•       sambamba (>=0.6.8)
+•   
 •       OS: high performance computing cluster in Linux (suggested)
 
-•       Reference genome: hg38
 
 
 ## Installation
