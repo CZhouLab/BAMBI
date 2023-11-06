@@ -49,9 +49,8 @@ To use BAMBI, you will need the following programs in your PATH:
 
 ### 0.RNASeq_Preprocessing.py
 
-input file sample: 0.RNASeq_preprocessing_input_sample.csv
+it needs to include the sequecning filesinformation, relative sample files provided: 
 
-it needs to include the information(relative sample files provided in Github): 
 •       "sample_name"
 
 •       Catergory information: "Label" ("C" for Control and "T" for "Treatment")
@@ -61,7 +60,14 @@ it needs to include the information(relative sample files provided in Github):
 •       Strandness information "Strandness" (""first", "second" or "unstrand")
 
 
-### Step 2: Download LIB folder from Zenodo
+### 1.statitical_based_feature_selection_info_generation.py
+
+#### Parameter:
+
+•       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
+
+it will generate a statitical metrics table for each genes
+
 ```bash
 cd /home/username/Flnc
 wget -c https://zenodo.org/record/7853855/files/LIB.zip?download=1
