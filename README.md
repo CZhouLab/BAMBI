@@ -18,20 +18,33 @@ Maintainer: Peng Zhou
 To use BAMBI, you will need the following programs in your PATH:
 
 •       python3 (>=3.7.3) 
+
 •       python packages:
+
 •       	numpy
+
 •       	pandas
+
 •       	scikit-learn (>=0.22.1)
+
 •       	kdepy (conda install -c dmentipl kdepy)
+
 •       	shap (conda install -c conda-forge shap)
-•       
+
+
 •       R (>=3.7.3) 
+
 •       R packages:
+
 •       	edgeR
+
 •       	limma
+
 •       	impute
+
 •       	GenomicFeatures (if you need to use customize annotation GTF file)
-•       
+
+    
 •       Softwares required for RNA-seq data preprocessing
 •       htseq (>=0.6.1)
 •       pysam (>=0.8.4)
