@@ -59,6 +59,10 @@ it needs to input a table which includes the sequecning files information, relat
 
 •       Strandness information "Strandness" (""first", "second" or "unstrand")
 
+If you need to do the RNASeq Preprocessing, you need to download the annoation folder from follow path, and save it under the src folder
+
+https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sharing
+
 ### Parameter:
 
 •       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA" or both)
