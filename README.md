@@ -4,9 +4,9 @@
 
 BAMBI (Biostatistics and Artificial-Intelligence integrated methods for Biomarker detection), to identify coding and non-coding RNA biomarkers for diagnosis and prognosis. BAMBI is a comprehensive RNA biomarker detection pipeline which can directly process RNA-seq data or microarray data without pre-processing and manually imputation. Compared to other methods, BAMBI and identify a small number of RNA biomarkers while still have a higher prediction performance than other methods. Thus, the putative biomarkers identified by BAMBI would have more easily adapted in clinical practice.
 
-![workflow](Picture_1_1.jpg)
+#![workflow](Picture_1_1.jpg)
 
-![workflow](Picture_1_2.jpg)
+#![workflow](Picture_1_2.jpg)
 
 Authors: Peng Zhou (peng.zhou@umassmed.edu), Chan Zhou (chan.zhou@umassmed.edu)
 
