@@ -43,7 +43,7 @@ To use BAMBI, you will need the following programs in your PATH:
 
 ## Usage
 
-## Step 0: 0.RNASeq_Preprocessing.py
+## Step 0: RNASeq_Preprocessing.py
 
 it needs to input a table which includes the sequecning files information, relative sample files provided: 
 
@@ -72,7 +72,7 @@ https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sha
 
 
 
-## Step 1: 1.statitical_based_feature_selection_info_generation.py
+## Step 1: statitical_based_feature_selection_info_generation.py
 
 it will generate a statitical metrics table for each genes, include: 
 
@@ -96,7 +96,7 @@ User can use this table to select thresholds for different metrics, this table s
 
 
 
-## Step 2: 2.statitical_based_feature_selection_gene_filter.py
+## Step 2: statitical_based_feature_selection_gene_filter.py
 
 ### Parameter:
 
@@ -115,7 +115,7 @@ User can use this table to select thresholds for different metrics, this table s
 
 
 
-## Step 3: 3_machine_learning_based_feature_selection_10CV.py
+## Step 3: machine_learning_based_feature_selection_10CV.py
 
 ### Parameter:
 
@@ -123,7 +123,7 @@ User can use this table to select thresholds for different metrics, this table s
 
 •       self-defined dataset name: "dataset_name": (any customized name)
 
-## Step 4: 4_result_collection.py
+## Step 4: result_collection.py
 
 ### Parameter:
 
