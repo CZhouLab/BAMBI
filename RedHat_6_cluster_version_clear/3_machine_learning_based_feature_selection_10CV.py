@@ -18,7 +18,7 @@ dataset_name = "GSE54456_PC"
 
 ### Internal Code from here, further edit not required
 
-directory = "."
+directory = os.getcwd()
 
 model_list = ["svm", "knn", "logReg", "bayes"]
 
@@ -55,7 +55,7 @@ High_Corr_Remove_type_info = ["New"]
 folder_list = []
 dataset_name_list = []
 
-folder_list = [folder_path]
+folder_list = [directory]
 if outlier_remove:
     dataset_name_list = [dataset_name + "_outlier_remove"]
 else:
