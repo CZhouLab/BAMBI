@@ -69,10 +69,10 @@ python 0.RNASeq_preprocessing.py --inputCSV INFO_TABLE_PATH --biomarker_target_g
 
 Arguments:
 
-	--inputCSV			path to your sequecning files information table
-	--biomarker_target_gene_type	target biomarker gene type, "protein_coding" or "lincRNA"
-	--sequence_type			sequence files type, "Single" or "Paired"
-	--annotation_file 		annotation file usage, ("LncBook_Version2.0_all","gencode_v22", "gencode_v29", "gencode_v37", or any path to your customized gtf)
+	--inputCSV			# path to your sequecning files information table
+	--biomarker_target_gene_type	# target biomarker gene type, "protein_coding" or "lincRNA"
+	--sequence_type			# sequence files type, "Single" or "Paired"
+	--annotation_file 		# annotation file usage, ("LncBook_Version2.0_all","gencode_v22", "gencode_v29", "gencode_v37", or any path to your customized gtf)
 
 ```
 
@@ -113,7 +113,7 @@ python 1.statitical_based_feature_selection_info_generation.py --biomarker_targe
 
 Arguments:
 
-	--biomarker_target_gene_type	target biomarker gene type, "protein_coding" or "lincRNA" or "microarray"
+	--biomarker_target_gene_type	# target biomarker gene type, "protein_coding" or "lincRNA" or "microarray"
 Options:
 	--RNASeq_FPKM_table_path	# if you want to use your own RNA-Seq table, you need to provide FPKM table path here
 	--RNASeq_ReadCount_table_path	# if you want to use your own RNA-Seq table, you need to provide ReadCount table path here
@@ -141,13 +141,13 @@ python 2.downstream_analysis.py --biomarker_target_gene_type {protein_coding, li
 
 Arguments:
 
-	--biomarker_target_gene_type		target biomarker gene type, "protein_coding" or "lincRNA" or "microarray"
-	--target_pvalue_type			target differential expression pvalue type for gene filter, "pvalue" or "padj"
-	--target_pvalue_threshold		target differential expression pvalue threshold for gene filter, (float type, [0, 1], suggest <= 0.05)
-	--target_foldchange_threshold		target foldchange threshold for gene filter, (float type, [0, inf), suggest 1 or 0.585)
-	--target_maxmin_remove_threshold	target threshold for Low-Expression Genes Filter, (float type, suggest 1.0 for protein coding, 0.01 for lncRNA)
-	--target_overlap_area_threshold		target threshold for high distribution overlap Genes Filter, (float type, [0, 1])
-	--dataset_name				self-defined dataset name
+	--biomarker_target_gene_type		# target biomarker gene type, "protein_coding" or "lincRNA" or "microarray"
+	--target_pvalue_type			# target differential expression pvalue type for gene filter, "pvalue" or "padj"
+	--target_pvalue_threshold		# target differential expression pvalue threshold for gene filter, (float type, [0, 1], suggest <= 0.05)
+	--target_foldchange_threshold		# target foldchange threshold for gene filter, (float type, [0, inf), suggest 1 or 0.585)
+	--target_maxmin_remove_threshold	# target threshold for Low-Expression Genes Filter, (float type, suggest 1.0 for protein coding, 0.01 for lncRNA)
+	--target_overlap_area_threshold		# target threshold for high distribution overlap Genes Filter, (float type, [0, 1])
+	--dataset_name				# self-defined dataset name
 
 
 ```
