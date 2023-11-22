@@ -43,7 +43,7 @@ To use BAMBI, you will need the following programs in your PATH:
 
 ## Usage
 
-### Step 0: RNASeq_Preprocessing
+## Step 0: RNASeq_Preprocessing
 
 This script proprocess RNA-Seq raw data into FPKM and ReadCount table
 
@@ -57,7 +57,7 @@ it needs to input a table which includes the sequecning files information in "--
 
 •       Strandness information "Strandness" (""first", "second" or "unstrand")
 
-#### Remark: 
+### Remark: 
 
 •       Because RNA-Seq data preprocess is very time consuming, this step only work in the high performance computing cluster in Linux
 
@@ -76,14 +76,14 @@ Arguments:
 
 ```
 
-#### Examples :
+### Examples :
 ```bash
 python 0.RNASeq_preprocessing.py --inputCSV ./0.RNASeq_preprocessing_input_sample_Paired-End.csv --biomarker_target_gene_type protein_coding --sequence_type Paired --annotation_file LncBook_Version2.0_all 
 ```
 
 
 
-### Step 1: statitical based feature selection info generation
+## Step 1: statitical based feature selection info generation
 
 it will generate a statitical metrics table for each genes, include: 
 
@@ -99,7 +99,7 @@ it will generate a statitical metrics table for each genes, include:
 
 User can use this table to select thresholds for different metrics for downstream analysis, this table saved in "./Gene_info.xlsx'.
 
-#### Remark: 
+### Remark: 
 
 •       You can skip the Step 0 RNA-Seq Preprocess, and use your own RNA-Seq table or microarray table for BAMBI biomarker detection
 
@@ -115,13 +115,13 @@ Arguments:
 
 	--biomarker_target_gene_type	target biomarker gene type, "protein_coding" or "lincRNA" or "microarray"
 Options:
-	--RNASeq_FPKM_table_path	if you want to use your own RNA-Seq table, you need to provide FPKM table path here
-	--RNASeq_ReadCount_table_path	if you want to use your own RNA-Seq table, you need to provide ReadCount table path here
-	--microarray_table_path		if you want to use your own microarray table, you need to provide microarray table path here
+	--RNASeq_FPKM_table_path	# if you want to use your own RNA-Seq table, you need to provide FPKM table path here
+	--RNASeq_ReadCount_table_path	# if you want to use your own RNA-Seq table, you need to provide ReadCount table path here
+	--microarray_table_path		# if you want to use your own microarray table, you need to provide microarray table path here
 
 ```
 
-#### Examples :
+### Examples :
 ```bash
 python 1.statitical_based_feature_selection_info_generation.py --biomarker_target_gene_type protein_coding --RNASeq_FPKM_table_path ./sample_data/FPKM_table.csv --RNASeq_ReadCount_table_path ./sample_data/ReadCount_table.csv
 ```
@@ -152,7 +152,7 @@ Arguments:
 
 ```
 
-#### Examples :
+### Examples :
 ```bash
 python 2.downstream_analysis.py --biomarker_target_gene_type protein_coding --target_pvalue_type padj --target_pvalue_threshold 0.05 --target_foldchange_threshold 1 --target_maxmin_remove_threshold 1 --target_overlap_area_threshold 0.1 --dataset_name customized_name
 ```
