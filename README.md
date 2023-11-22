@@ -43,9 +43,13 @@ To use BAMBI, you will need the following programs in your PATH:
 
 ## Usage
 
-## Step 0: RNASeq_Preprocessing.py
+### Step 0: RNASeq_Preprocessing
 
-it needs to input a table which includes the sequecning files information, relative sample files provided: 
+This script proprocess RNA-Seq raw data into FPKM and ReadCount table
+
+Because RNA-Seq data preprocess is very time consuming, it only work in the high performance computing cluster in Linux
+
+it needs to input a table which includes the sequecning files information in "--inputCSV", relative sample files provided: 
 
 •       "sample_name"
 
@@ -59,6 +63,17 @@ If you need to do the RNASeq Preprocessing, you need to download the annoation f
 
 https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sharing
 
+```bash
+python 0.RNASeq_preprocessing.py --inputCSV INFO_TABLE_PATH --biomarker_target_gene_type {protein_coding, lincRNA} --sequence_type {Single, Paired} --annotation_file ANNOTATION_NAME            
+
+Arguments:
+
+	--inputCSV	path to your sequecning files information table
+    --biomarker_target_gene_type	target biomarker gene type, "protein_coding" or "lincRNA"
+	--sequence_type	sequence files type, "Single" or "Paired"
+    --annotation_file annotation file usage, ("LncBook_Version2.0_all","gencode_v22", "gencode_v29", "gencode_v37", or any path to your customized gtf)
+
+```
 ### Parameter:
 
 •       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA" or both)
