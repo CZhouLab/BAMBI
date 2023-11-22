@@ -69,9 +69,9 @@ python 0.RNASeq_preprocessing.py --inputCSV INFO_TABLE_PATH --biomarker_target_g
 Arguments:
 
 	--inputCSV	path to your sequecning files information table
-    --biomarker_target_gene_type	target biomarker gene type, "protein_coding" or "lincRNA"
+	--biomarker_target_gene_type	target biomarker gene type, "protein_coding" or "lincRNA"
 	--sequence_type	sequence files type, "Single" or "Paired"
-    --annotation_file annotation file usage, ("LncBook_Version2.0_all","gencode_v22", "gencode_v29", "gencode_v37", or any path to your customized gtf)
+	--annotation_file annotation file usage, ("LncBook_Version2.0_all","gencode_v22", "gencode_v29", "gencode_v37", or any path to your customized gtf)
 
 ```
 ### Parameter:
