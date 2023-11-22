@@ -57,7 +57,7 @@ it needs to input a table which includes the sequecning files information in "--
 
 •       Strandness information "Strandness" (""first", "second" or "unstrand")
 
-Remark: 
+#### Remark: 
 
 •       Because RNA-Seq data preprocess is very time consuming, this step only work in the high performance computing cluster in Linux
 
@@ -83,7 +83,7 @@ python 0.RNASeq_preprocessing.py --inputCSV ./0.RNASeq_preprocessing_input_sampl
 
 
 
-## Step 1: statitical_based_feature_selection_info_generation.py
+### Step 1: statitical based feature selection info generation
 
 it will generate a statitical metrics table for each genes, include: 
 
@@ -95,50 +95,66 @@ it will generate a statitical metrics table for each genes, include:
 
 •       "max_val": the maximum expression in all sample, used for Low-Expression Genes Filter  
 
-•       "overlap_area": between-group estimate distribution overlap area
+•       "distribution_overlap_area": between-group estimate distribution overlap area
 
-User can use this table to select thresholds for different metrics, this table saved in "./Gene_info.csv'.
+User can use this table to select thresholds for different metrics for downstream analysis, this table saved in "./Gene_info.xlsx'.
 
-### Parameter:
+#### Remark: 
 
-•       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
+•       You can skip the Step 0 RNA-Seq Preprocess, and use your own RNA-Seq table or microarray table for BAMBI biomarker detection
 
+•       If you want to use your own RNA-Seq table, you need to provide both FPKM and ReadCount tables
 
-
-
-
-## Step 2: statitical_based_feature_selection_gene_filter.py
-
-### Parameter:
-
-•       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
-
-•       target differential expression pvalue type for gene filter: "target_pvalue_type": ("pvalue" or "padj")
-
-•       target differential expression pvalue threshold for gene filter: "target_pvalue_threshold": (float type, [0, 1], suggest <= 0.05)
-
-•       target foldchange threshold for gene filter: "target_foldchange_threshold": (float type, [0, inf), suggest 1 or 0.585)
-
-•       target threshold for Low-Expression Genes Filter: "target_maxmin_remove_threshold": (float type, suggest 1.0 for protein coding, 0.01 for lncRNA)
-
-•       target threshold for high distribution overlap Genes Filter: "target_overlap_area_threshold": (float type, [0, 1])
+•       If you want to use your own microarray table, you need to provide microarray tables
 
 
+```bash
+python 1.statitical_based_feature_selection_info_generation.py --biomarker_target_gene_type {protein_coding, lincRNA, microarray} [optional options]           
+
+Arguments:
+
+	--biomarker_target_gene_type	target biomarker gene type, "protein_coding" or "lincRNA" or "microarray"
+Options:
+	--RNASeq_FPKM_table_path	if you want to use your own RNA-Seq table, you need to provide FPKM table path here
+	--RNASeq_ReadCount_table_path	if you want to use your own RNA-Seq table, you need to provide ReadCount table path here
+	--microarray_table_path		if you want to use your own microarray table, you need to provide microarray table path here
+
+```
+
+#### Examples :
+```bash
+python 1.statitical_based_feature_selection_info_generation.py --biomarker_target_gene_type protein_coding --RNASeq_FPKM_table_path ./sample_data/FPKM_table.csv --RNASeq_ReadCount_table_path ./sample_data/ReadCount_table.csv
+```
 
 
-## Step 3: machine_learning_based_feature_selection_10CV.py
 
-### Parameter:
 
-•       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
+## Step 2: downstream analysis
 
-•       self-defined dataset name: "dataset_name": (any customized name)
+After you selected the thresholds for statitical based feature selection, BAMBI will automatically do the follow steps:
+•       selected genes based on provide thresholds, and generate relative update gene table
+•       machine learning based feature selection
+•       collect results and provide suggested candidate biomarkers
 
-## Step 4: result_collection.py
+```bash
+python 2.downstream_analysis.py --biomarker_target_gene_type {protein_coding, lincRNA, microarray} [optional options]           
 
-### Parameter:
+Arguments:
 
-•       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA")
+	--biomarker_target_gene_type		target biomarker gene type, "protein_coding" or "lincRNA" or "microarray"
+	--target_pvalue_type			target differential expression pvalue type for gene filter, "pvalue" or "padj"
+	--target_pvalue_threshold		target differential expression pvalue threshold for gene filter, (float type, [0, 1], suggest <= 0.05)
+	--target_foldchange_threshold		target foldchange threshold for gene filter, (float type, [0, inf), suggest 1 or 0.585)
+	--target_maxmin_remove_threshold	target threshold for Low-Expression Genes Filter, (float type, suggest 1.0 for protein coding, 0.01 for lncRNA)
+	--target_overlap_area_threshold		target threshold for high distribution overlap Genes Filter, (float type, [0, 1])
+	--dataset_name				self-defined dataset name
 
-•       self-defined dataset name: "dataset_name": (need to same as the dataset name used in last step)
+
+```
+
+#### Examples :
+```bash
+python 2.downstream_analysis.py --biomarker_target_gene_type protein_coding --target_pvalue_type padj --target_pvalue_threshold 0.05 --target_foldchange_threshold 1 --target_maxmin_remove_threshold 1 --target_overlap_area_threshold 0.1 --dataset_name customized_name
+```
+
 
