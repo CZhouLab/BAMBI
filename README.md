@@ -47,8 +47,6 @@ To use BAMBI, you will need the following programs in your PATH:
 
 This script proprocess RNA-Seq raw data into FPKM and ReadCount table
 
-Because RNA-Seq data preprocess is very time consuming, it only work in the high performance computing cluster in Linux
-
 it needs to input a table which includes the sequecning files information in "--inputCSV", relative sample files provided: 
 
 •       "sample_name"
@@ -59,31 +57,29 @@ it needs to input a table which includes the sequecning files information in "--
 
 •       Strandness information "Strandness" (""first", "second" or "unstrand")
 
-If you need to do the RNASeq Preprocessing, you need to download the annoation folder from follow path, and save it under the src folder
+Remark: 
 
-https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sharing
+•       Because RNA-Seq data preprocess is very time consuming, this step only work in the high performance computing cluster in Linux
+
+•       If you need to do the RNASeq Preprocessing, you need to download the annoation folder from follow path, and save it under the src folder
+	https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sharing
 
 ```bash
 python 0.RNASeq_preprocessing.py --inputCSV INFO_TABLE_PATH --biomarker_target_gene_type {protein_coding, lincRNA} --sequence_type {Single, Paired} --annotation_file ANNOTATION_NAME            
 
 Arguments:
 
-	--inputCSV	path to your sequecning files information table
+	--inputCSV			path to your sequecning files information table
 	--biomarker_target_gene_type	target biomarker gene type, "protein_coding" or "lincRNA"
-	--sequence_type	sequence files type, "Single" or "Paired"
-	--annotation_file annotation file usage, ("LncBook_Version2.0_all","gencode_v22", "gencode_v29", "gencode_v37", or any path to your customized gtf)
+	--sequence_type			sequence files type, "Single" or "Paired"
+	--annotation_file 		annotation file usage, ("LncBook_Version2.0_all","gencode_v22", "gencode_v29", "gencode_v37", or any path to your customized gtf)
 
 ```
-### Parameter:
 
-•       target biomarker gene type: "gene_type": ("protein_coding" or "lincRNA" or both)
-
-•       sequence files type: "sequence_type": ("Single" or "Paired")
-
-•       annotation file usage: "annotation_file": ("LncBook_Version2.0_all","gencode_v22", "gencode_v29", "gencode_v37", or any path to your customized gtf)
-
-•       path to your sequecning files information table: "inputCSV": ("protein_coding" or "lincRNA" or both)
-
+#### Examples :
+```bash
+python 0.RNASeq_preprocessing.py --inputCSV ./0.RNASeq_preprocessing_input_sample_Paired-End.csv --biomarker_target_gene_type protein_coding --sequence_type Paired --annotation_file LncBook_Version2.0_all 
+```
 
 
 
