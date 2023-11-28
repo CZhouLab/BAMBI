@@ -43,6 +43,8 @@ To use BAMBI, you will need the following programs in your PATH:
 
 ## Usage
 
+•       If you want to use your own RNA-Seq table or microarray table for BAMBI biomarker detection, you can skip the Step 0 RNA-Seq Preprocess
+
 ## Step 0: RNASeq_Preprocessing
 
 This script proprocess RNA-Seq raw data into FPKM and ReadCount table
@@ -100,8 +102,6 @@ it will generate a statitical metrics table for each genes, include:
 User can use this table to select thresholds for different metrics for downstream analysis, this table saved in "./Gene_info.xlsx'.
 
 ### Remark: 
-
-•       You can skip the Step 0 RNA-Seq Preprocess, and use your own RNA-Seq table or microarray table for BAMBI biomarker detection
 
 •       If you want to use your own RNA-Seq table, you need to provide both FPKM and ReadCount tables
 
