@@ -44,6 +44,7 @@ To use BAMBI, you will need the following programs in your PATH:
 ## Usage
 
 •       If you want to use your own RNA-Seq table or microarray table for BAMBI biomarker detection, you can skip the Step 0 RNA-Seq Preprocess
+•       Example RNA-Seq table and microarray table are provided in "example_datasets" folder 
 
 ## Step 0: RNASeq_Preprocessing
 
