@@ -61,6 +61,8 @@ it needs to input a table which includes the sequecning files information in "--
 
 •       Strandness information "Strandness" (""first", "second" or "unstrand")
 
+Output files(under "output" dir): FPKM table(summary_step1.txt.FPKM.ProteinCoding or summary_step1.txt.FPKM.lincRNA), ReadCount table(summary_step1.txt.ReadCount.ProteinCoding or summary_step1.txt.ReadCount.lincRNA)
+
 ### Remark: 
 
 •       Because RNA-Seq data preprocess is very time consuming, this step only work in the high performance computing cluster in Linux
@@ -103,6 +105,8 @@ it will generate a statitical metrics table for each genes, include:
 
 User can use this table to select thresholds for different metrics for downstream analysis, this table saved in "./Gene_info.xlsx'.
 
+Output files(under current dir):statitical metrics table named protein_coding_Gene_info.csv or lincRNA_Gene_info.csv
+
 ### Remark: 
 
 •       If you want to use your own RNA-Seq table, you need to provide both FPKM and ReadCount tables
@@ -140,6 +144,8 @@ After you selected the thresholds for statitical based feature selection, BAMBI 
 •       machine learning based feature selection
 
 •       collect results and provide suggested candidate biomarkers
+
+Output files(under "result_summary" dir):individual gene biomarker information(summary_"GeneType"_high_frequency_gene.csv), gene panel biomarker information(summary_"GeneType"_selected_models_stat_between_partitions.csv)
 
 ```bash
 python 2.downstream_analysis.py --biomarker_target_gene_type {protein_coding, lincRNA, microarray} [optional options]           
