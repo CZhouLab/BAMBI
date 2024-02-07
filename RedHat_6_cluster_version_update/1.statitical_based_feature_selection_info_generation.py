@@ -203,10 +203,10 @@ def statitical_based_feature_selection_info_generation(biomarker_target_gene_typ
 
 def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("--biomarker_target_gene_type", choices=["protein_coding", "lincRNA", "microarray"], default="protein_coding", required=True)
-    parser.add_argument("--RNASeq_FPKM_table_path", default=None, type=str, required=False)
-    parser.add_argument("--RNASeq_ReadCount_table_path", default=None, type=str, required=False)
-    parser.add_argument("--microarray_table_path", default=None, type=str, required=False)
+    parser.add_argument('-t', "--biomarker_target_gene_type", choices=["protein_coding", "lincRNA", "microarray"], default="protein_coding", required=True)
+    parser.add_argument('-F', "--RNASeq_FPKM_table_path", default=None, type=str, required=False)
+    parser.add_argument('-R', "--RNASeq_ReadCount_table_path", default=None, type=str, required=False)
+    parser.add_argument('-m', "--microarray_table_path", default=None, type=str, required=False)
 
     args = parser.parse_args()
 
