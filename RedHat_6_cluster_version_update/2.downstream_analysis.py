@@ -57,14 +57,14 @@ def downstream_analysis(biomarker_target_gene_type="protein_coding", target_pval
 
 def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("--biomarker_target_gene_type", choices=["protein_coding", "lincRNA", "microarray"],
+    parser.add_argument('-t',"--biomarker_target_gene_type", choices=["protein_coding", "lincRNA", "microarray"],
                         default="protein_coding", required=True)
-    parser.add_argument("--target_pvalue_type", default=None, type=str, required=True)
-    parser.add_argument("--target_pvalue_threshold", default=None, type=float, required=True)
-    parser.add_argument("--target_foldchange_threshold", default=None, type=float, required=True)
-    parser.add_argument("--target_maxmin_remove_threshold", default=None, type=float, required=True)
-    parser.add_argument("--target_overlap_area_threshold", default=None, type=float, required=True)
-    parser.add_argument("--dataset_name", default="Customized_Dataset", type=str, required=False)
+    parser.add_argument('-p',"--target_pvalue_type", default=None, type=str, required=True)
+    parser.add_argument('-q', "--target_pvalue_threshold", default=None, type=float, required=True)
+    parser.add_argument('-f', "--target_foldchange_threshold", default=None, type=float, required=True)
+    parser.add_argument('-m', "--target_maxmin_remove_threshold", default=None, type=float, required=True)
+    parser.add_argument('-o', "--target_overlap_area_threshold", default=None, type=float, required=True)
+    parser.add_argument('-n', "--dataset_name", default="Customized_Dataset", type=str, required=False)
     parser.add_argument("--r", type=str, default="False", help="whether resubmit termiated job" )
     args = parser.parse_args()
 
