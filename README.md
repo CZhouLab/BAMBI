@@ -134,8 +134,11 @@ python 1.statitical_based_feature_selection_info_generation.py --biomarker_targe
 ## Step 2: downstream analysis
 
 After you selected the thresholds for statitical based feature selection, BAMBI will automatically do the follow steps:
+
 •       selected genes based on provide thresholds, and generate relative update gene table
+
 •       machine learning based feature selection
+
 •       collect results and provide suggested candidate biomarkers
 
 ```bash
