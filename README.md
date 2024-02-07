@@ -145,8 +145,7 @@ After you selected the thresholds for statitical based feature selection, BAMBI 
 
 •       collect results and provide suggested candidate biomarkers
 
-Output files(under "result_summary" dir):
-individual gene biomarker information(summary_"GeneType"_high_frequency_gene.csv), gene panel biomarker information(summary_"GeneType"_selected_models_stat_between_partitions.csv)
+Output files(under "result_summary" dir): individual gene biomarker information(summary_"GeneType"_high_frequency_gene.csv), gene panel biomarker information(summary_"GeneType"_selected_models_stat_between_partitions.csv)
 
 ```bash
 python 2.downstream_analysis.py --biomarker_target_gene_type {protein_coding, lincRNA, microarray} [optional options]           
