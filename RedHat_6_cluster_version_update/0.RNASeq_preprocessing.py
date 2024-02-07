@@ -324,10 +324,10 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
 
 def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("--inputCSV", default=None, type=str, required=True)
-    parser.add_argument("--biomarker_target_gene_type", choices=["protein_coding", "lincRNA", "both"], default="protein_coding", required=True)
-    parser.add_argument("--sequence_type", default=None, type=str, required=True)
-    parser.add_argument("--annotation_file", default="LncBook_Version2.0_all", type=str, required=True)
+    parser.add_argument('-i',"--inputCSV", default=None, type=str, required=True)
+    parser.add_argument('-t',"--biomarker_target_gene_type", choices=["protein_coding", "lincRNA", "both"], default="protein_coding", required=True)
+    parser.add_argument('-s',"--sequence_type", default=None, type=str, required=True)
+    parser.add_argument('-a',"--annotation_file", default="LncBook_Version2.0_all", type=str, required=True)
 
 
 
