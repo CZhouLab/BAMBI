@@ -115,11 +115,11 @@ python 1.statitical_based_feature_selection_info_generation.py --biomarker_targe
 
 Arguments:
 
-	--biomarker_target_gene_type	# target biomarker gene type, "protein_coding" or "lincRNA" or "microarray"
+	--biomarker_target_gene_type [-t]	# target biomarker gene type, "protein_coding" or "lincRNA" or "microarray"
 Options:
-	--RNASeq_FPKM_table_path	# if you want to use your own RNA-Seq table, you need to provide FPKM table path here
-	--RNASeq_ReadCount_table_path	# if you want to use your own RNA-Seq table, you need to provide ReadCount table path here
-	--microarray_table_path		# if you want to use your own microarray table, you need to provide microarray table path here
+	--RNASeq_FPKM_table_path [-F]	# if you want to use your own RNA-Seq table, you need to provide FPKM table path here
+	--RNASeq_ReadCount_table_path [-R]	# if you want to use your own RNA-Seq table, you need to provide ReadCount table path here
+	--microarray_table_path	[-m]	# if you want to use your own microarray table, you need to provide microarray table path here
 
 ```
 
