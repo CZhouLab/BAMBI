@@ -27,7 +27,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import RepeatedStratifiedKFold
 from sklearn.model_selection import StratifiedKFold, KFold
 from mlxtend.classifier import StackingCVClassifier
-import graphviz
+# import graphviz
 from sklearn.ensemble import RandomForestClassifier
 from matplotlib import pyplot as plt
 import numpy as np
@@ -37,8 +37,8 @@ from sklearn.preprocessing import label_binarize
 from sklearn.metrics import roc_curve, auc
 from sklearn.feature_selection import RFE
 from sklearn.model_selection import RandomizedSearchCV
-import xgboost as xgb
-from xgboost.sklearn import XGBClassifier
+# import xgboost as xgb
+# from xgboost.sklearn import XGBClassifier
 from skopt import gp_minimize
 from sklearn.naive_bayes import GaussianNB
 from sklearn.base import clone
