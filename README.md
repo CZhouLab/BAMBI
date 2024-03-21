@@ -39,7 +39,33 @@ To use BAMBI, you will need the following programs in your PATH:
 
 •       OS: high performance computing cluster in Linux (suggested)
 
+## Dependency Docker Option
 
+We also provide the Docker option for BAMBI usage. After you install docker, you can pull our image by:
+
+```bash
+docker pull billyzh/bambi_test_0:latest
+```
+
+And you can use run this docker image to build a temporary enviroment(container of Docker) for BAMBI by:
+
+```bash
+docker run -it --mount "type=bind,src=%cd%,target=/usr/src/app" billyzh/bambi_test_0 /bin/bash
+```
+
+After you built the temporary enviroment, you can run BAMBI same as non-Docker option like follow "Usage" Chapter.
+
+Before you run the RNA-Seq raw data proprocess step(Step 0), use the follow command to activate a relative environment:
+
+```bash
+conda activate test_env_2
+```
+
+Before you run the statitical based feature selection or downstream analysis(Step 1 & 2), use the follow command to activate a relative environment:
+
+```bash
+conda activate test_env
+```
 
 ## Usage
 
