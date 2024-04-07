@@ -82,7 +82,7 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
         GTF_file = annotation_file_folder_path + '/LncBook_Version2.0_all/LncBook_Version2.0_all.gtf'
         ExonLength_file = annotation_file_folder_path + '/LncBook_Version2.0_all/LncBook_Version2.0_all.annotation.ExonLength'
     else:
-        create_Known_splice_site_file = subprocess.Popen(["./src/annotation_file/extract_splice_sites.py", annotation_file],stdout=subprocess.PIPE, )
+        create_Known_splice_site_file = subprocess.Popen([annotation_file_folder_path + "/extract_splice_sites.py", annotation_file],stdout=subprocess.PIPE, )
         stdout_value = create_Known_splice_site_file.communicate()[0]
         tem_folder_path = annotation_file_folder_path + "/customized_annotation_file"
         if not os.path.isdir(tem_folder_path):
