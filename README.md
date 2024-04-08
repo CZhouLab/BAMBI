@@ -50,10 +50,25 @@ docker pull billyzh/bambi_test_0:latest
 And you can use run this docker image to build a temporary enviroment(container of Docker) for BAMBI by:
 
 ```bash
-docker run -it --mount "type=bind,src=%cd%,target=/usr/src/app" billyzh/bambi_test_0 /bin/bash
+docker run -it --mount "type=bind,src=%cd%,target=/usr/src/data" billyzh/bambi_test_0 /bin/bash
 ```
 
 After you built the temporary enviroment, you can run BAMBI same as non-Docker option like follow "Usage" Chapter.
+
+In the docker version, all scripts have included in the docker image. 
+
+When executing Python scripts, please use the full path to the script(/usr/src/app):
+
+For example:
+
+### Examples :
+```bash
+#General version
+python 1.statitical_based_feature_selection_info_generation.py
+
+# Docker version
+python /usr/src/app/1.statitical_based_feature_selection_info_generation.py
+```
 
 Before you run the RNA-Seq raw data proprocess step(Step 0), use the follow command to activate a relative environment:
 
