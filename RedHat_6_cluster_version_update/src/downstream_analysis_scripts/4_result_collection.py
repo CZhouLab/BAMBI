@@ -286,7 +286,12 @@ def Jobstatus_Check(directory, biomarker_target_gene_type="protein_coding", data
             report_dict[model]['ROC_AUC'] = []
             report_dict[model]['Precision'] = []
             report_dict[model]['Recall'] = []
+            report_dict[model]['Specificity'] = []
             report_dict[model]['F1'] = []
+            report_dict[model]['TN'] = []
+            report_dict[model]['FP'] = []
+            report_dict[model]['FN'] = []
+            report_dict[model]['TP'] = []
 
 
 
@@ -306,7 +311,12 @@ def Jobstatus_Check(directory, biomarker_target_gene_type="protein_coding", data
                         report_dict[model]['ROC_AUC'].append("/")
                         report_dict[model]['Precision'].append("/")
                         report_dict[model]['Recall'].append("/")
+                        report_dict[model]['Specificity'].append("/")
                         report_dict[model]['F1'].append("/")
+                        report_dict[model]['TN'].append("/")
+                        report_dict[model]['FP'].append("/")
+                        report_dict[model]['FN'].append("/")
+                        report_dict[model]['TP'].append("/")
 
                     continue
 
@@ -331,7 +341,14 @@ def Jobstatus_Check(directory, biomarker_target_gene_type="protein_coding", data
                     report_dict[model]['ROC_AUC'].append(report_df.iloc[0].at['ROC_AUC'])
                     report_dict[model]['Precision'].append(report_df.iloc[0].at['Precision'])
                     report_dict[model]['Recall'].append(report_df.iloc[0].at['Recall'])
+                    report_dict[model]['Specificity'].append(report_df.iloc[0].at['Specificity'])
                     report_dict[model]['F1'].append(report_df.iloc[0].at['F1'])
+                    report_dict[model]['TN'].append(report_df.iloc[0].at['TN'])
+                    report_dict[model]['FP'].append(report_df.iloc[0].at['FP'])
+                    report_dict[model]['FN'].append(report_df.iloc[0].at['FN'])
+                    report_dict[model]['TP'].append(report_df.iloc[0].at['TP'])
+
+                    
                     report_dict[model]['feature_num'].append(report_df.iloc[0].at['feature_num'])
                     if model == "randomForest" or model == "stacking":
                         feature_list_path = current_Folder_path + "/" + ID + "/" + model + "_imp_features.txt"
@@ -353,7 +370,12 @@ def Jobstatus_Check(directory, biomarker_target_gene_type="protein_coding", data
                     report_dict[model]['ROC_AUC'].append("/")
                     report_dict[model]['Precision'].append("/")
                     report_dict[model]['Recall'].append("/")
+                    report_dict[model]['Specificity'].append("/")
                     report_dict[model]['F1'].append("/")
+                    report_dict[model]['TN'].append("/")
+                    report_dict[model]['FP'].append("/")
+                    report_dict[model]['FN'].append("/")
+                    report_dict[model]['TP'].append("/")
 
                 if resubmit == True:
                     resubmit_directory = ML_path + "/" + ID
@@ -376,7 +398,12 @@ def Jobstatus_Check(directory, biomarker_target_gene_type="protein_coding", data
             record_df[model + '_ROC_AUC'] = report_dict[model]['ROC_AUC']
             record_df[model + '_Precision'] = report_dict[model]['Precision']
             record_df[model + '_Recall'] = report_dict[model]['Recall']
+            record_df[model + '_Specificity'] = report_dict[model]['Specificity']
             record_df[model + '_F1'] = report_dict[model]['F1']
+            record_df[model + '_TN'] = report_dict[model]['TN']
+            record_df[model + '_FP'] = report_dict[model]['FP']
+            record_df[model + '_FN'] = report_dict[model]['FN']
+            record_df[model + '_TP'] = report_dict[model]['TP']
 
 
         ori_record_df.to_csv(ML_path + '/record.csv', index = False)
