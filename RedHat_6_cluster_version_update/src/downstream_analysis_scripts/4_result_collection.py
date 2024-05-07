@@ -400,10 +400,10 @@ def Jobstatus_Check(directory, biomarker_target_gene_type="protein_coding", data
             record_df[model + '_Recall'] = report_dict[model]['Recall']
             record_df[model + '_Specificity'] = report_dict[model]['Specificity']
             record_df[model + '_F1'] = report_dict[model]['F1']
-            record_df[model + '_TN'] = report_dict[model]['TN']
-            record_df[model + '_FP'] = report_dict[model]['FP']
-            record_df[model + '_FN'] = report_dict[model]['FN']
-            record_df[model + '_TP'] = report_dict[model]['TP']
+            # record_df[model + '_TN'] = report_dict[model]['TN']
+            # record_df[model + '_FP'] = report_dict[model]['FP']
+            # record_df[model + '_FN'] = report_dict[model]['FN']
+            # record_df[model + '_TP'] = report_dict[model]['TP']
 
 
         ori_record_df.to_csv(ML_path + '/record.csv', index = False)
