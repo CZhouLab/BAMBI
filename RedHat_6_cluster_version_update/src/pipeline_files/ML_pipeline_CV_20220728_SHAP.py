@@ -4042,16 +4042,25 @@ def circBiomarker(input_file,info_table_path, Model=["svm","knn","logReg","decis
                 test_accuracy = accuracy_score(y_true=test_y, y_pred=predcit_y)
                 test_balanced_accuracy = balanced_accuracy_score(y_true = test_y, y_pred = predcit_y)
                 # test_average_precision = precision_score(y_true = test_y, y_pred = predcit_y, average='macro')
-                test_f1 = f1_score(y_true = test_y, y_pred = predcit_y, average='macro')
-                test_precision = precision_score(y_true = test_y, y_pred = predcit_y, average='macro')
-                test_recall = recall_score(y_true = test_y, y_pred = predcit_y, average='macro')
+
                 test_tn, test_fp, test_fn, test_tp = confusion_matrix(y_true=test_y, y_pred=predcit_y).ravel()
                 if label_number > 2:
                     y_one_hot = label_binarize(test_y, np.arange(label_number))
                     y_score = evaluation_Model.predict_proba(selected_test_X)
                     test_roc_auc = roc_auc_score(y_true = y_one_hot, y_score = y_score, average='macro', multi_class='ovo')
+
+                    test_f1 = f1_score(y_true = test_y, y_pred = predcit_y, average='macro')
+                    test_precision = precision_score(y_true = test_y, y_pred = predcit_y, average='macro')
+                    test_recall = recall_score(y_true = test_y, y_pred = predcit_y, average='macro')
+                    test_specifity = ((test_tn.mean() / (test_tn.mean() + test_fp.mean())) + (test_fn.mean() / (test_tp.mean() + test_fn.mean()))) / 2
                 else:
                     test_roc_auc = roc_auc_score(y_true = test_y, y_score = predcit_y, average='macro')
+
+                    test_f1 = f1_score(y_true = test_y, y_pred = predcit_y, average='binary')
+                    test_precision = precision_score(y_true = test_y, y_pred = predcit_y, average='binary')
+                    test_recall = recall_score(y_true = test_y, y_pred = predcit_y, average='binary')
+                    test_specifity = test_tn.mean() / (test_tn.mean() + test_fp.mean())
+                
 
                 print("Accuracy: %.3f%% " % (test_accuracy.mean() * 100.0))
                 print("Balanced Accuracy: %.3f%% " % (test_balanced_accuracy.mean() * 100.0))
@@ -4060,9 +4069,9 @@ def circBiomarker(input_file,info_table_path, Model=["svm","knn","logReg","decis
                 print("ROC_AUC: %.3f%% " % (test_roc_auc.mean() * 100.0))
                 print("Precision: %.3f%% " % (test_precision.mean() * 100.0))
                 print("Recall / Sensitivity: %.3f%% " % (test_recall.mean() * 100.0))
-                # print("Specificity: %.3f%% " % ((test_tn.mean() / (test_tn.mean() + test_fp.mean())) * 100.0))
+                print("Specificity: %.3f%% " % (test_specifity.mean() * 100.0))
                 # ((test_tn / (test_tn + test_fp)) + (test_fn / (test_tp + test_fn))) / 2
-                print("Specificity: %.3f%% " % ((((test_tn.mean() / (test_tn.mean() + test_fp.mean())) + (test_fn.mean() / (test_tp.mean() + test_fn.mean()))) / 2) * 100.0))
+                # print("Specificity: %.3f%% " % ((() * 100.0))
                 print("F1: %.3f%% " % (test_f1.mean()))
                 print("TN: %d" % (test_tn.mean()))
                 print("FP: %d" % (test_fp.mean()))
@@ -4077,8 +4086,9 @@ def circBiomarker(input_file,info_table_path, Model=["svm","knn","logReg","decis
                 output_report_doc.add_paragraph("ROC_AUC: %.3f%% " % (test_roc_auc.mean() * 100.0))
                 output_report_doc.add_paragraph("Precision: %.3f%% " % (test_precision.mean() * 100.0))
                 output_report_doc.add_paragraph("Recall / Sensitivity: %.3f%% " % (test_recall.mean() * 100.0))
+                output_report_doc.add_paragraph("Specificity: %.3f%% " % (test_specifity.mean() * 100.0))
                 # output_report_doc.add_paragraph("Specificity: %.3f%% " % ((test_tn.mean() / (test_tn.mean() + test_fp.mean())) * 100.0))
-                output_report_doc.add_paragraph("Specificity: %.3f%% " % ((((test_tn.mean() / (test_tn.mean() + test_fp.mean())) + (test_fn.mean() / (test_tp.mean() + test_fn.mean()))) / 2) * 100.0))
+                # output_report_doc.add_paragraph("Specificity: %.3f%% " % ((((test_tn.mean() / (test_tn.mean() + test_fp.mean())) + (test_fn.mean() / (test_tp.mean() + test_fn.mean()))) / 2) * 100.0))
                 output_report_doc.add_paragraph("F1: %.3f%% " % (test_f1.mean() * 100.0))
                 output_report_doc.add_paragraph("TN: %d" % (test_tn.mean()))
                 output_report_doc.add_paragraph("FP: %d" % (test_fp.mean()))
@@ -4093,8 +4103,8 @@ def circBiomarker(input_file,info_table_path, Model=["svm","knn","logReg","decis
                      "ROC_AUC": [test_roc_auc.mean()], #"ROC_AUC_std": [test_roc_auc.std()],
                      "Precision": [test_precision.mean()], #"Precision_std": [test_precision.std()],
                      "Recall": [test_recall.mean()],#"Recall_std": [test_recall.std()],
-                     # "Specificity": [test_tn.mean() / (test_tn.mean() + test_fp.mean())],
-                     "Specificity": [((test_tn.mean() / (test_tn.mean() + test_fp.mean())) + (test_fn.mean() / (test_tp.mean() + test_fn.mean()))) / 2],
+                     "Specificity": [test_specifity.mean()],
+                     # "Specificity": [((test_tn.mean() / (test_tn.mean() + test_fp.mean())) + (test_fn.mean() / (test_tp.mean() + test_fn.mean()))) / 2],
                      "F1": [test_f1.mean()], #"F1_std": [test_f1.std()]
                      "TN": [test_tn.mean()],
                      "FP": [test_fp.mean()],
