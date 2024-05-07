@@ -4053,7 +4053,7 @@ def circBiomarker(input_file,info_table_path, Model=["svm","knn","logReg","decis
                     test_precision = precision_score(y_true = test_y, y_pred = predcit_y, average='macro')
                     test_recall = recall_score(y_true = test_y, y_pred = predcit_y, average='macro')
                     test_specifity = ((test_tn.mean() / (test_tn.mean() + test_fp.mean())) + (test_fn.mean() / (test_tp.mean() + test_fn.mean()))) / 2
-                else:
+                elif label_number == 2:
                     test_roc_auc = roc_auc_score(y_true = test_y, y_score = predcit_y, average='macro')
 
                     test_f1 = f1_score(y_true = test_y, y_pred = predcit_y, average='binary')
