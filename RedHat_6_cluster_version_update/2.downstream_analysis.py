@@ -24,11 +24,14 @@ def downstream_analysis(biomarker_target_gene_type="protein_coding", target_pval
     if not HPC_parallel:
         directory = "/usr/src/app"
         output_directory = os.getcwd() + "/output"
+        HPC_parapllel_str = "FALSE"
     else:
         directory = os.getcwd()
         output_directory = directory + "/output"
+        HPC_parapllel_str = "TRUE"
 
     src_path = directory + "/src"
+
 
     statitical_based_feature_selection_gene_filter_script_path = src_path + "/downstream_analysis_scripts/2.statitical_based_feature_selection_gene_filter.py"
     machine_learning_based_feature_selection_10CV_scirpt_path = src_path + "/downstream_analysis_scripts/3_machine_learning_based_feature_selection_10CV.py"
@@ -48,7 +51,8 @@ def downstream_analysis(biomarker_target_gene_type="protein_coding", target_pval
     run_Pipeline_tem = subprocess.Popen(['python', machine_learning_based_feature_selection_10CV_scirpt_path,
                                          '--directory', os.getcwd(), #directory,
                                          '--biomarker_target_gene_type', biomarker_target_gene_type,
-                                         '--dataset_name', dataset_name])
+                                         '--dataset_name', dataset_name,
+                                         '--HPC', HPC_parapllel_str])
 
     run_Pipeline_tem.communicate()
 
