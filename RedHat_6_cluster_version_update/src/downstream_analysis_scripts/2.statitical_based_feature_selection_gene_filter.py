@@ -34,7 +34,7 @@ import argparse
 
 def statitical_based_feature_selection_gene_filter(directory, biomarker_target_gene_type="protein_coding", target_pvalue_type = "padj",
                                                        target_pvalue_threshold = 0.05, target_foldchange_threshold = 1.0,
-                                                   target_maxmin_remove_threshold = 1.0, target_overlap_area_threshold = 0.01):
+                                                   target_maxmin_remove_threshold = 1.0, target_overlap_area_threshold = 0.01, HPC_parallel = False):
 
     folder_path = directory
 
