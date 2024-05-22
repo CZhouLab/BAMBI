@@ -82,7 +82,7 @@ Heatmap_info_dict["combine"]["FPKM"] = output_directory + "/summary_step1.txt.FP
 
 
 #model_list = ["svm", "knn", "logReg", "decisionTree", "randomForest",  "bayes", "xgboost"] #["svm", "knn", "logReg", "decisionTree", "randomForest", "bayes", "xgboost", "stacking"]
-record_metric_list = ['feature_num', 'effective_feature_num', 'Accuracy', 'Balanced_Accuracy', 'ROC_AUC', 'Precision', 'Recall', 'F1']
+record_metric_list = ['feature_num', 'effective_feature_num', 'Accuracy', 'Balanced_Accuracy', 'ROC_AUC', 'Precision', 'Recall', 'Specificity', 'F1', 'TN', 'FP', 'FN', 'TP']
 
 
 report_df_ori = pd.read_csv(report_path)
@@ -263,7 +263,12 @@ if result_organization:
         record_dict["ROC_AUC"] = []
         record_dict["Precision"] = []
         record_dict["Recall"] = []
+        record_dict['Specificity'] = []
         record_dict["F1"] = []
+        record_dict['TN'] = []
+        record_dict['FP'] = []
+        record_dict['FN'] = []
+        record_dict['TP'] = []
         record_dict["features"] = []
 
 
@@ -327,7 +332,14 @@ if result_organization:
                     tem_dict["ROC_AUC"] = acceptable_model_df[model + "_" + "ROC_AUC"].tolist()
                     tem_dict["Precision"] = acceptable_model_df[model + "_" + "Precision"].tolist()
                     tem_dict["Recall"] = acceptable_model_df[model + "_" + "Recall"].tolist()
+                    tem_dict['Specificity'] = acceptable_model_df[model + "_" + 'Specificity'].tolist()
                     tem_dict["F1"] = acceptable_model_df[model + "_" + "F1"].tolist()
+                    tem_dict['TN'] = acceptable_model_df[model + "_" + 'TN'].tolist()
+                    tem_dict['FP'] = acceptable_model_df[model + "_" + 'FP'].tolist()
+                    tem_dict['FN'] = acceptable_model_df[model + "_" + 'FN'].tolist()
+                    tem_dict['TP'] = acceptable_model_df[model + "_" + 'TP'].tolist()
+
+
 
                     tem_dict["model"] = []
                     tem_dict["partition"] =[]
@@ -359,7 +371,12 @@ if result_organization:
                         tem_ROC_AUC = tem_dict["ROC_AUC"][i]
                         tem_Precision = tem_dict["Precision"][i]
                         tem_Recall = tem_dict["Recall"][i]
+                        tem_Specificity = tem_dict['Specificity'][i]
                         tem_F1 = tem_dict["F1"][i]
+                        tem_TN = tem_dict["TN"][i]
+                        tem_FP = tem_dict["FP"][i]
+                        tem_FN = tem_dict["FN"][i]
+                        tem_TP = tem_dict["TP"][i]
                         tem_partition = tem_dict["partition"][i]
 
                         tem_combination = (tem_model, tem_feature_num, feature_list, tem_partition)
@@ -379,7 +396,12 @@ if result_organization:
                                 record_dict["ROC_AUC"].append(tem_ROC_AUC)
                                 record_dict["Precision"].append(tem_Precision)
                                 record_dict["Recall"].append(tem_Recall)
+                                record_dict["Specificity"].append(tem_Specificity)
                                 record_dict["F1"].append(tem_F1)
+                                record_dict["TN"].append(tem_TN)
+                                record_dict["FP"].append(tem_FP)
+                                record_dict["FN"].append(tem_FN)
+                                record_dict["TP"].append(tem_TP)
                                 record_dict["features"].append(feature_list)
                                 record_dict["partition"].append(tem_partition)
 
@@ -398,7 +420,13 @@ if result_organization:
                                 record_dict["ROC_AUC"][tem_index] = tem_ROC_AUC
                                 record_dict["Precision"][tem_index] = tem_Precision
                                 record_dict["Recall"][tem_index] = tem_Recall
+                                record_dict["Specificity"][tem_index] = tem_Specificity
                                 record_dict["F1"][tem_index] = tem_F1
+                                record_dict["TN"][tem_index] = tem_TN
+                                record_dict["FP"][tem_index] = tem_FP
+                                record_dict["FN"][tem_index] = tem_FN
+                                record_dict["TP"][tem_index] = tem_TP
+
                                 # record_dict["features"].append(feature_list)
 
 
@@ -413,7 +441,10 @@ if result_organization:
                                     "model": record_dict["model"], "effective_feature_num": record_dict["actual_feature_num"],
                                     "Accuracy": record_dict["Accuracy"], "Balanced_Accuracy": record_dict["Balanced_Accuracy"],
                                     "ROC_AUC":record_dict["ROC_AUC"], "Precision": record_dict["Precision"], "Recall": record_dict["Recall"],
-                                    "F1": record_dict["F1"], "genes":record_dict["features"]})
+                                    "Specificity": record_dict["Specificity"], "F1": record_dict["F1"],
+                                    # "TN": record_dict["TN"],"FP": record_dict["FP"],
+                                    # "FN": record_dict["FN"],"TP": record_dict["TP"],
+                                    "genes":record_dict["features"]})
 
 
         # df_output_1 = df_output_1.sort_values([Target_Metric, 'effective_feature_num'], ascending=[False, True])
@@ -437,7 +468,12 @@ if result_organization:
         record_dict_2["ROC_AUC"] = []
         record_dict_2["Precision"] = []
         record_dict_2["Recall"] = []
+        record_dict_2["Specificity"] = []
         record_dict_2["F1"] = []
+        record_dict_2["TN"] = []
+        record_dict_2["FP"] = []
+        record_dict_2["FN"] = []
+        record_dict_2["TP"] = []
         record_dict_2["name_list"] = []
         record_dict_2["features"] = []
 
@@ -452,7 +488,13 @@ if result_organization:
             tem_ROC_AUC = record_dict["ROC_AUC"][i]
             tem_Precision = record_dict["Precision"][i]
             tem_Recall = record_dict["Recall"][i]
+            tem_Specificity = record_dict["Specificity"][i]
             tem_F1 = record_dict["F1"][i]
+            tem_TN = record_dict["TN"][i]
+            tem_FP = record_dict["FP"][i]
+            tem_FN = record_dict["FN"][i]
+            tem_TP = record_dict["TP"][i]
+
 
             tem_combination = (tem_model, tem_feature_num, tem_feature_list)
 
@@ -468,9 +510,18 @@ if result_organization:
                     record_dict_2["ROC_AUC"].append(tem_ROC_AUC)
                     record_dict_2["Precision"].append(tem_Precision)
                     record_dict_2["Recall"].append(tem_Recall)
+                    record_dict_2["Specificity"].append(tem_Specificity)
                     record_dict_2["F1"].append(tem_F1)
+                    record_dict_2["TN"].append(tem_TN)
+                    record_dict_2["FP"].append(tem_FP)
+                    record_dict_2["FN"].append(tem_FN)
+                    record_dict_2["TP"].append(tem_TP)
                     record_dict_2["name_list"].append([tem_name])
                     record_dict_2["features"].append(tem_feature_list)
+
+
+
+
 
             else:
                 tem_index = tem_combination_pool.index(tem_combination)
@@ -482,7 +533,15 @@ if result_organization:
                 record_dict_2["ROC_AUC"][tem_index] = record_dict_2["ROC_AUC"][tem_index] + tem_ROC_AUC
                 record_dict_2["Precision"][tem_index] = record_dict_2["Precision"][tem_index] + tem_Precision
                 record_dict_2["Recall"][tem_index] = record_dict_2["Recall"][tem_index] + tem_Recall
+                record_dict_2["Specificity"][tem_index] = record_dict_2["Specificity"][tem_index] + tem_Specificity
                 record_dict_2["F1"][tem_index] = record_dict_2["F1"][tem_index] + tem_F1
+                record_dict_2["TN"][tem_index] = record_dict_2["TN"][tem_index] + tem_TN
+                record_dict_2["FP"][tem_index] = record_dict_2["FP"][tem_index] + tem_FP
+                record_dict_2["FN"][tem_index] = record_dict_2["FN"][tem_index] + tem_FN
+                record_dict_2["TP"][tem_index] = record_dict_2["TP"][tem_index] + tem_TP
+
+
+
                 record_dict_2["name_list"][tem_index].append(tem_name)
                 # record_dict_2["features"].append(tem_feature_list)
 
@@ -493,7 +552,12 @@ if result_organization:
         record_dict_2["ROC_AUC_mean"] = []
         record_dict_2["Precision_mean"] = []
         record_dict_2["Recall_mean"] = []
+        record_dict_2["Specificity_mean"] = []
         record_dict_2["F1_mean"] = []
+        record_dict_2["TN_mean"] = []
+        record_dict_2["FP_mean"] = []
+        record_dict_2["FN_mean"] = []
+        record_dict_2["TP_mean"] = []
         record_dict_2["repeat_time"] = []
 
 
@@ -506,15 +570,22 @@ if result_organization:
             record_dict_2["ROC_AUC_mean"].append(record_dict_2["ROC_AUC"][i]/name_list_length)
             record_dict_2["Precision_mean"].append(record_dict_2["Precision"][i]/name_list_length)
             record_dict_2["Recall_mean"].append(record_dict_2["Recall"][i]/name_list_length)
+            record_dict_2["Specificity_mean"].append(record_dict_2["Specificity"][i] / name_list_length)
             record_dict_2["F1_mean"].append(record_dict_2["F1"][i]/name_list_length)
-
+            record_dict_2["TN_mean"].append(record_dict_2["TN"][i] / name_list_length)
+            record_dict_2["FP_mean"].append(record_dict_2["FP"][i] / name_list_length)
+            record_dict_2["FN_mean"].append(record_dict_2["FN"][i] / name_list_length)
+            record_dict_2["TP_mean"].append(record_dict_2["TP"][i] / name_list_length)
 
 
         df_output_2 = pd.DataFrame({"model":record_dict_2["model"], "effective_feature_num": record_dict_2["effective_feature_num"],
                                     "repeat_time_in_different_partitions": record_dict_2["repeat_time"],
                                     "Accuracy_mean":record_dict_2["Accuracy_mean"], "Balanced_Accuracy_mean":record_dict_2["Balanced_Accuracy_mean"],
                                     "ROC_AUC_mean":record_dict_2["ROC_AUC_mean"], "Precision_mean": record_dict_2["Precision_mean"],
-                                    "Recall_mean":record_dict_2["Recall_mean"], "F1_mean":record_dict_2["F1_mean"],
+                                    "Recall_mean":record_dict_2["Recall_mean"], "Specificity_mean": record_dict_2["Specificity_mean"],
+                                    "F1_mean":record_dict_2["F1_mean"],
+                                    # "TN_mean": record_dict_2["TN_mean"], "FP_mean":record_dict_2["FP_mean"],
+                                    # "FN_mean": record_dict_2["FN_mean"], "TP_mean":record_dict_2["TP_mean"],
                                     "genes":record_dict_2["features"], "model_names":record_dict_2["name_list"]})
 
 
@@ -544,7 +615,13 @@ if result_organization:
             roc_auc_list = []
             precision_list = []
             recall_list = []
+            specificity_list = []
             f1_list = []
+            tn_list = []
+            fp_list = []
+            fn_list = []
+            tp_list = []
+
 
 
             for tup in sorted_stat_calculate_dict:
@@ -562,13 +639,22 @@ if result_organization:
                             roc_auc_list.append(record_dict["ROC_AUC"][i])
                             precision_list.append(record_dict["Precision"][i])
                             recall_list.append(record_dict["Recall"][i])
+                            specificity_list.append(record_dict["Specificity"][i])
                             f1_list.append(record_dict["F1"][i])
+                            tn_list.append(record_dict["TN"][i])
+                            fp_list.append(record_dict["FP"][i])
+                            fn_list.append(record_dict["FN"][i])
+                            tp_list.append(record_dict["TP"][i])
 
             df_output_3 = pd.DataFrame({"shared_gene": shared_gene_name_list, "frequency": frequency_list,
                                         "existed_in": name_list, "model": model_record_list, "effective_feature_num": gene_num_list,
                                         "Accuracy": accuracy_list, "Balanced_Accuracy": balance_accuracy_list,
                                         "ROC_AUC":roc_auc_list, "Precision": precision_list, "Recall": recall_list,
-                                        "F1": f1_list})
+                                        "Specificity":specificity_list,"F1": f1_list,
+                                        # "TN": tn_list, "FP": fp_list,
+                                        # "FN": fn_list, "TP": tp_list,
+
+                                        })
 
             # df_output_2 = df_output_2.applymap(tuple)
             # print(df_output_2)
@@ -651,7 +737,12 @@ if result_organization:
             roc_auc_list = []
             precision_list = []
             recall_list = []
+            specificity_list = []
             f1_list = []
+            tn_list = []
+            fp_list = []
+            fn_list = []
+            tp_list = []
             model_type_num_list = []
             partition_list = []
             partition_num_list = []
@@ -685,7 +776,18 @@ if result_organization:
                     roc_auc_summary = 0
                     precision_summary = 0
                     recall_summary = 0
+                    specificity_summary = 0
                     f1_summary = 0
+                    tn_list_summary = 0
+                    fp_list_summary = 0
+                    fn_list_summary = 0
+                    tp_list_summary = 0
+
+
+
+
+
+
 
                     tem_flag = 0
 
@@ -724,7 +826,12 @@ if result_organization:
                                 tem_dict_high_frequency["ROC_AUC"] = record_dict["ROC_AUC"][i]
                                 tem_dict_high_frequency["Precision"] = record_dict["Precision"][i]
                                 tem_dict_high_frequency["Recall"] = record_dict["Recall"][i]
+                                tem_dict_high_frequency["Specificity"] = record_dict["Specificity"][i]
                                 tem_dict_high_frequency["F1"] = record_dict["F1"][i]
+                                tem_dict_high_frequency["TN"] = record_dict["TN"][i]
+                                tem_dict_high_frequency["FP"] = record_dict["FP"][i]
+                                tem_dict_high_frequency["FN"] = record_dict["FN"][i]
+                                tem_dict_high_frequency["TP"] = record_dict["TP"][i]
                                 tem_flag = 1
 
                             else:
@@ -736,7 +843,12 @@ if result_organization:
                                         tem_dict_high_frequency["ROC_AUC"] = record_dict["ROC_AUC"][i]
                                         tem_dict_high_frequency["Precision"] = record_dict["Precision"][i]
                                         tem_dict_high_frequency["Recall"] = record_dict["Recall"][i]
+                                        tem_dict_high_frequency["Specificity"] = record_dict["Specificity"][i]
                                         tem_dict_high_frequency["F1"] = record_dict["F1"][i]
+                                        tem_dict_high_frequency["TN"] = record_dict["TN"][i]
+                                        tem_dict_high_frequency["FP"] = record_dict["FP"][i]
+                                        tem_dict_high_frequency["FN"] = record_dict["FN"][i]
+                                        tem_dict_high_frequency["TP"] = record_dict["TP"][i]
                                     elif record_dict["actual_feature_num"][i] == tem_dict_high_frequency["actual_feature_num"]:
                                         if record_dict[Target_Metric][i] > tem_dict_high_frequency[Target_Metric]:
                                             tem_dict_high_frequency["actual_feature_num"] = record_dict["actual_feature_num"][i]
@@ -745,7 +857,12 @@ if result_organization:
                                             tem_dict_high_frequency["ROC_AUC"] = record_dict["ROC_AUC"][i]
                                             tem_dict_high_frequency["Precision"] = record_dict["Precision"][i]
                                             tem_dict_high_frequency["Recall"] = record_dict["Recall"][i]
+                                            tem_dict_high_frequency["Specificity"] = record_dict["Specificity"][i]
                                             tem_dict_high_frequency["F1"] = record_dict["F1"][i]
+                                            tem_dict_high_frequency["TN"] = record_dict["TN"][i]
+                                            tem_dict_high_frequency["FP"] = record_dict["FP"][i]
+                                            tem_dict_high_frequency["FN"] = record_dict["FN"][i]
+                                            tem_dict_high_frequency["TP"] = record_dict["TP"][i]
 
 
 
@@ -757,7 +874,12 @@ if result_organization:
                     roc_auc_list.append(tem_dict_high_frequency["ROC_AUC"])
                     precision_list.append(tem_dict_high_frequency["Precision"])
                     recall_list.append(tem_dict_high_frequency["Recall"])
+                    specificity_list.append(tem_dict_high_frequency["Specificity"])
                     f1_list.append(tem_dict_high_frequency["F1"])
+                    tn_list.append(tem_dict_high_frequency["TN"])
+                    fp_list.append(tem_dict_high_frequency["FP"])
+                    fn_list.append(tem_dict_high_frequency["FN"])
+                    tp_list.append(tem_dict_high_frequency["TP"])
 
                     partition_list.append(tem_partition_list)
                     partition_num_list.append(len(tem_partition_list))
@@ -790,8 +912,11 @@ if result_organization:
                                         "model": model_record_list, "effective_feature_num_min": gene_num_list,
                                         "Accuracy": accuracy_list, "Balanced_Accuracy": balance_accuracy_list,
                                         "ROC_AUC": roc_auc_list, "Precision": precision_list,
-                                        "Recall": recall_list,
-                                        "F1": f1_list, "model_type_num": model_type_num_list})
+                                        "Recall": recall_list, "Specificity": specificity_list,
+                                        "F1": f1_list,
+                                        "TN": tn_list, "FP": fp_list,
+                                        "FN": fn_list, "TP": tp_list,
+                                        "model_type_num": model_type_num_list})
 
 
 
@@ -801,7 +926,12 @@ if result_organization:
             tem_ROC_AUC_record_list = []
             tem_Precision_record_list = []
             tem_Recall_record_list = []
+            tem_Specificity_record_list = []
             tem_F1_record_list = []
+            tem_TN_record_list = []
+            tem_FP_record_list = []
+            tem_FN_record_list = []
+            tem_TP_record_list = []
             tem_repeat_record_list = []
             tem_model_name_record_list = []
 
@@ -815,7 +945,12 @@ if result_organization:
                 tem_ROC_AUC_record = 0
                 tem_Precision_record = 0
                 tem_Recall_record = 0
+                tem_Specificity_record = 0
                 tem_F1_record = 0
+                tem_TN_record = 0
+                tem_FP_record = 0
+                tem_FN_record = 0
+                tem_TP_record = 0
 
                 for k in range(len(record_dict["features"])):
                     tem_features = record_dict["features"][k]
@@ -827,7 +962,12 @@ if result_organization:
                             tem_ROC_AUC_record = record_dict["ROC_AUC"][k] + tem_ROC_AUC_record
                             tem_Precision_record = record_dict["Precision"][k] + tem_Precision_record
                             tem_Recall_record = record_dict["Recall"][k] + tem_Recall_record
+                            tem_Specificity_record = record_dict["Specificity"][k] + tem_Specificity_record
                             tem_F1_record = record_dict["F1"][k] + tem_F1_record
+                            tem_TN_record = record_dict["TN"][k] + tem_TN_record
+                            tem_FP_record = record_dict["FP"][k] + tem_FP_record
+                            tem_FN_record = record_dict["FN"][k] + tem_FN_record
+                            tem_TP_record = record_dict["TP"][k] + tem_TP_record
 
                 repeat_time = len(tem_similar_number_list)
                 tem_repeat_record_list.append(repeat_time)
@@ -838,7 +978,12 @@ if result_organization:
                 tem_ROC_AUC_record_list.append(tem_ROC_AUC_record/repeat_time)
                 tem_Precision_record_list.append(tem_Precision_record/repeat_time)
                 tem_Recall_record_list.append(tem_Recall_record/repeat_time)
+                tem_Specificity_record_list.append(tem_Specificity_record / repeat_time)
                 tem_F1_record_list.append(tem_F1_record/repeat_time)
+                tem_TN_record_list.append(tem_TN_record / repeat_time)
+                tem_FP_record_list.append(tem_FP_record / repeat_time)
+                tem_FN_record_list.append(tem_FN_record / repeat_time)
+                tem_TP_record_list.append(tem_TP_record / repeat_time)
 
             df_output_3_organized = pd.DataFrame({"shared_gene": shared_gene_name_list, "frequency": frequency_list,
                                         "model": model_record_list, "model_type_num": model_type_num_list,
@@ -856,7 +1001,10 @@ if result_organization:
                                         "Accuracy_mean": tem_Accuracy_record_list, "Balanced_Accuracy_mean": tem_Balanced_Accuracy_record_list,
                                         "ROC_AUC_mean": tem_ROC_AUC_record_list, "Precision_mean": tem_Precision_record_list,
                                         "Recall_mean": tem_Recall_record_list,
+                                        "Specificity_mean": tem_Specificity_record_list,
                                         "F1_mean": tem_F1_record_list,
+                                        # "TN_mean": tem_TN_record_list,"FP_mean": tem_FP_record_list,
+                                        # "FN_mean": tem_FN_record_list,"TP_mean": tem_TP_record_list,
                                         "names":tem_model_name_record_list})
 
 
@@ -978,25 +1126,25 @@ if result_organization:
         #      gene_type + "_biomarker_FPKM_df.txt", gene_type + "_heatmap.pdf"
         #      #   , pvalue_type, pvalue_threshold,linc_min_FPKM_expression
         #      ])
-        heatmap_generation.communicate()
+        # heatmap_generation.communicate()
         os.chdir(report_folder_path)
-        result_heatmap_path = Heatmap_file_folder + "/" + gene_type + "_heatmap.pdf"
+        # result_heatmap_path = Heatmap_file_folder + "/" + gene_type + "_heatmap.pdf"
 
 
-        if os.path.isfile(result_heatmap_path):
-            # tem_str = "ID:" + ID + " Balanced_Accuracy:" + str(
-            #     report_df.iloc[0].at['Balanced_Accuracy']) + " Best Model:" + \
-            #           str(report_df.iloc[0].at['BestModel']) + " feature number：" + str(
-            #     report_df.iloc[0].at['feature_num'])
-            # output_report_doc.add_paragraph(tem_str)
-            images = convert_from_path(result_heatmap_path)
-            tem_pic_path = Heatmap_file_folder + "/" + gene_type + "_heatmap.jpg"
-            images[0].save(tem_pic_path, 'JPEG')
-            # pic_no = pic_no + 1
-            # output_report_doc.add_picture(tem_pic_path, width=Inches(6.42), height=Inches(3.21))
-            # output_report_doc = gene_name_translation(gene_name_trans_file, ID, ML_path, output_report_doc)
-        else:
-            print(gene_type + "'s heatmap cannot be generated")
+        # if os.path.isfile(result_heatmap_path):
+        #     # tem_str = "ID:" + ID + " Balanced_Accuracy:" + str(
+        #     #     report_df.iloc[0].at['Balanced_Accuracy']) + " Best Model:" + \
+        #     #           str(report_df.iloc[0].at['BestModel']) + " feature number：" + str(
+        #     #     report_df.iloc[0].at['feature_num'])
+        #     # output_report_doc.add_paragraph(tem_str)
+        #     images = convert_from_path(result_heatmap_path)
+        #     tem_pic_path = Heatmap_file_folder + "/" + gene_type + "_heatmap.jpg"
+        #     images[0].save(tem_pic_path, 'JPEG')
+        #     # pic_no = pic_no + 1
+        #     # output_report_doc.add_picture(tem_pic_path, width=Inches(6.42), height=Inches(3.21))
+        #     # output_report_doc = gene_name_translation(gene_name_trans_file, ID, ML_path, output_report_doc)
+        # else:
+        #     print(gene_type + "'s heatmap cannot be generated")
 
 
 
