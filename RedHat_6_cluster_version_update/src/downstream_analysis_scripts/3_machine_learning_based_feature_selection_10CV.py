@@ -18,8 +18,15 @@ import warnings
 
 ############################################################
 
-def machine_learning_based_feature_selection_10CV(directory, biomarker_target_gene_type="protein_coding", dataset_name="Customized_Dataset"):
+def machine_learning_based_feature_selection_10CV(directory, biomarker_target_gene_type="protein_coding", dataset_name="Customized_Dataset", HPC_parallel = False):
     folder_path = directory
+
+    if not HPC_parallel:
+        src_path = "/usr/src/app/src"
+    else:
+        src_path = directory + "/src"
+
+
 
     model_list = ["svm", "knn", "logReg", "bayes"] #svm knn logReg decisionTree randomForest bayes xgboost stacking
 
@@ -47,7 +54,7 @@ def machine_learning_based_feature_selection_10CV(directory, biomarker_target_ge
     curve_point_info = ["knee"] # ["highest", "knee"]
     Model_Selection_Methods_info = ["Balanced Accuracy 10CV"] #["Balanced Accuracy 10CV", "F1 10CV", "AUC 10CV"]
     pipeline_options = ["General"] #["General", "Fresh"]
-    pipeline_path = folder_path + "/src/pipeline_files/ML_pipeline_CV_20220728_SHAP.py"
+    pipeline_path = src_path + "/pipeline_files/ML_pipeline_CV_20220728_SHAP.py"
 
     pseudo_foldchange = str(0.000001) # 1e-6
 
@@ -484,12 +491,24 @@ def main():
     parser.add_argument("--directory", default=None, type=str, required=True)
     parser.add_argument("--biomarker_target_gene_type", choices=["protein_coding", "lincRNA", "microarray"], default="protein_coding", required=True)
     parser.add_argument("--dataset_name", default="Customized_Dataset", type=str, required=False)
+    parser.add_argument('-h', "--HPC", type=str, default="FALSE", required=False)
 
 
     args = parser.parse_args()
 
+    def t_or_f(fs):
+        ua = str(fs).upper()
+        if 'TRUE'.startswith(ua):
+            return True
+        elif 'FALSE'.startswith(ua):
+            return False
+        else:
+            return True
+
+    HPC_parallel_opt = t_or_f(args.HPC)
+
     machine_learning_based_feature_selection_10CV(directory=args.directory, biomarker_target_gene_type=args.biomarker_target_gene_type,
-                                                   dataset_name=args.dataset_name)
+                                                   dataset_name=args.dataset_name, HPC_parallel=HPC_parallel_opt)
     # stab_selection_main(folder_path=args.folder_path, file_name=args.train_file_name, testfile_name=args.test_file_name, threshold=args.threshold)
 
 
