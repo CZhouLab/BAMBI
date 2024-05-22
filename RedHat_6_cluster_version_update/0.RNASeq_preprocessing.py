@@ -24,7 +24,7 @@ import warnings
 
 ############################################################
 
-def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence_type="Paired", annotation_file="LncBook_Version2.0_all", inputCSV="./0.RNASeq_preprocessing_input_sample_Paired-End.csv"):
+def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence_type="Paired", annotation_file="LncBook_Version2.0_all", inputCSV="./0.RNASeq_preprocessing_input_sample_Paired-End.csv", HPC_parallel = False):
     ### option relative
     if biomarker_target_gene_type == "both":
         gene_type_list = ["protein_coding", "lincRNA"]
@@ -36,10 +36,14 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
     from_FPKM_ReadCount_generation = True
 
     ## path relative
-    directory = os.getcwd()
-    output_directory = directory + "/output"
-    src_path = directory + "/src"
+    if not HPC_parallel:
+        directory = "/usr/src/app"
+        output_directory = os.getcwd() + "/output"
+    else:
+        directory = os.getcwd()
+        output_directory = directory + "/output"
 
+    src_path = directory + "/src"
     annotation_file_folder_path = src_path + "/annotation_file"
 
     if not os.path.isdir(output_directory):
@@ -53,15 +57,15 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
 
     os.chdir(directory)
 
-    os.system('chmod +x ./src/sambamba_view.sh')
+    os.system('chmod +x ' + src_path + '/sambamba_view.sh')
 
-    os.system('chmod +x ./src/sambamba_sort.sh')
+    os.system('chmod +x ' + src_path + '/sambamba_sort.sh')
 
-    os.system('chmod +x ./src/sed_1.sh')
+    os.system('chmod +x ' + src_path + '/sed_1.sh')
 
-    os.system('chmod +x ./src/sed_2.sh')
+    os.system('chmod +x ' + src_path + '/sed_2.sh')
 
-    os.system('chmod +x ./src/sed_3.sh')
+    os.system('chmod +x ' + src_path + '/sed_3.sh')
 
     os.chdir(output_directory)
 
@@ -94,16 +98,16 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
         Known_splice_site = create_Known_splice_site_file_output
         GTF_file = annotation_file
         create_ExonLength_file_output = tem_folder_path + "/customized_annotation.ExonLength"
-        create_ExonLength_file = subprocess.Popen(["Rscript", "./src/annotation_file/ExonLength_forGene_fromgtf.R", annotation_file, create_ExonLength_file_output])
+        create_ExonLength_file = subprocess.Popen(["Rscript",  annotation_file_folder_path + "/ExonLength_forGene_fromgtf.R", annotation_file, create_ExonLength_file_output])
         create_ExonLength_file.communicate()
         ExonLength_file = create_ExonLength_file_output
 
 
-    def job_submission(sample_name, strandness, directory, Known_splice_site, GTF_file, ExonLength_file, sequence_type, R1_input="NA", R2_input="NA", unpaired_input = "NA", HPC_parallel = False):
+    def job_submission(sample_name, strandness, src_path, output_directory, Known_splice_site, GTF_file, ExonLength_file, sequence_type, R1_input="NA", R2_input="NA", unpaired_input = "NA", HPC_parallel = False):
 
-        output_directory = directory + "/output"
+        # output_directory = directory + "/output"
 
-        pyscript_path = directory + "/src/cluster_job_submission_FPKM_revision.py"
+        pyscript_path = src_path + "/cluster_job_submission_FPKM_revision.py"
 
 
         save_directory = output_directory + "/" + str(sample_name)
@@ -195,7 +199,7 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
                     R2_input = R2_input_list[i]
                     strandness = Strandness_list[i]
                     JobID = job_submission(sample_name=sample_name, R1_input=R1_input, R2_input=R2_input, strandness=strandness,
-                                           directory=directory, Known_splice_site=Known_splice_site, GTF_file=GTF_file,
+                                           src_path=src_path, output_directory=output_directory, Known_splice_site=Known_splice_site, GTF_file=GTF_file,
                                            ExonLength_file=ExonLength_file, sequence_type=sequence_type)
                     Jobid_list.append(JobID)
             elif sequence_type == "Single":
@@ -204,7 +208,7 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
                     unpaired_input = unpaired_input_list[i]
                     strandness = Strandness_list[i]
                     JobID = job_submission(sample_name=sample_name, unpaired_input=unpaired_input, strandness=strandness,
-                                           directory=directory, Known_splice_site=Known_splice_site, GTF_file=GTF_file,
+                                           src_path=src_path, output_directory=output_directory, Known_splice_site=Known_splice_site, GTF_file=GTF_file,
                                            ExonLength_file=ExonLength_file, sequence_type=sequence_type)
                     Jobid_list.append(JobID)
 
@@ -356,12 +360,23 @@ def main():
     parser.add_argument('-t',"--biomarker_target_gene_type", choices=["protein_coding", "lincRNA", "both"], default="protein_coding", required=True)
     parser.add_argument('-s',"--sequence_type", default=None, type=str, required=True)
     parser.add_argument('-a',"--annotation_file", default="LncBook_Version2.0_all", type=str, required=True)
-
+    parser.add_argument('-h',"--HPC", type=str, default="FALSE", required=False)
 
 
 
 
     args = parser.parse_args()
+
+    def t_or_f(fs):
+        ua = str(fs).upper()
+        if 'TRUE'.startswith(ua):
+            return True
+        elif 'FALSE'.startswith(ua):
+            return False
+        else:
+            return True
+
+    HPC_parallel_opt = t_or_f(args.HPC)
 
     # RNASeq_preprocessing(gene_type_list=args.gene_type_list, only_filter_num=args.only_filter_num,
     #                       directory=args.directory, DE_type=args.DE_type,
@@ -369,7 +384,7 @@ def main():
 
     RNASeq_preprocessing(biomarker_target_gene_type=args.biomarker_target_gene_type, sequence_type=args.sequence_type,
                          annotation_file=args.annotation_file,
-                         inputCSV=args.inputCSV)
+                         inputCSV=args.inputCSV, HPC_parallel=HPC_parallel_opt)
 
     # stab_selection_main(folder_path=args.folder_path, file_name=args.train_file_name, testfile_name=args.test_file_name, threshold=args.threshold)
 
