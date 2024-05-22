@@ -16,7 +16,7 @@ import warnings
 
 ############################################################
 def statitical_based_feature_selection_info_generation(biomarker_target_gene_type="protein_coding", RNASeq_FPKM_table_path=None,
-                                                       RNASeq_ReadCount_table_path=None, microarray_table_path=None):
+                                                       RNASeq_ReadCount_table_path=None, microarray_table_path=None, HPC_parallel = False):
 
     # submit_script_string = '''
     # #! /bin/bash
@@ -36,8 +36,14 @@ def statitical_based_feature_selection_info_generation(biomarker_target_gene_typ
     # datatype = "BMGD_processed" ##  "BMGD_processed" "original_microarray"
     ### original_microarray requires standard file
     ### BMGD_processed requies XXX/output/summary_step1.txt"
-
-    directory = os.getcwd()
+    if not HPC_parallel:
+        directory = "/usr/src/app"
+        output_directory = os.getcwd() + "/output"
+    else:
+        directory = os.getcwd()
+        output_directory = directory + "/output"
+    src_path = directory + "/src"
+    # directory = os.getcwd()
     if RNASeq_FPKM_table_path is None and RNASeq_ReadCount_table_path is None and microarray_table_path is None:
         datatype = "BMGD_processed"
         standard_file_path = directory + "/output/summary_step1.txt"
@@ -60,8 +66,8 @@ def statitical_based_feature_selection_info_generation(biomarker_target_gene_typ
 
     microarray_logtransform = str(0) ## if data has been log transformed: 0, if not or not sure: 1
 
-    output_directory = directory + "/output"
-    src_path = directory + "/src"
+    # output_directory = directory + "/output"
+    # src_path = directory + "/src"
 
     preprocessing_python_script_path = src_path + "/main_CV_20220725_add_microarray_sliverman_combined_DE_revision.py"
 
@@ -207,13 +213,26 @@ def main():
     parser.add_argument('-F', "--RNASeq_FPKM_table_path", default=None, type=str, required=False)
     parser.add_argument('-R', "--RNASeq_ReadCount_table_path", default=None, type=str, required=False)
     parser.add_argument('-m', "--microarray_table_path", default=None, type=str, required=False)
+    parser.add_argument('-h', "--HPC", type=str, default="FALSE", required=False)
 
     args = parser.parse_args()
+
+    def t_or_f(fs):
+        ua = str(fs).upper()
+        if 'TRUE'.startswith(ua):
+            return True
+        elif 'FALSE'.startswith(ua):
+            return False
+        else:
+            return True
+
+    HPC_parallel_opt = t_or_f(args.HPC)
 
     statitical_based_feature_selection_info_generation(biomarker_target_gene_type=args.biomarker_target_gene_type,
                                                        RNASeq_FPKM_table_path=args.RNASeq_FPKM_table_path,
                                                        RNASeq_ReadCount_table_path=args.RNASeq_ReadCount_table_path,
-                                                       microarray_table_path=args.microarray_table_path
+                                                       microarray_table_path=args.microarray_table_path, HPC_parallel=HPC_parallel_opt
+
                                                        )
     # stab_selection_main(folder_path=args.folder_path, file_name=args.train_file_name, testfile_name=args.test_file_name, threshold=args.threshold)
 
