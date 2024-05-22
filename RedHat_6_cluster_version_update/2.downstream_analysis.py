@@ -59,7 +59,8 @@ def downstream_analysis(biomarker_target_gene_type="protein_coding", target_pval
     run_Pipeline_tem = subprocess.Popen(['python', result_collection_scirpt_path,
                                          '--directory', os.getcwd(), #directory,
                                          '--biomarker_target_gene_type', biomarker_target_gene_type,
-                                         '--dataset_name', dataset_name])
+                                         '--dataset_name', dataset_name,
+                                         '--HPC', HPC_parapllel_str])
 
     run_Pipeline_tem.communicate()
 
