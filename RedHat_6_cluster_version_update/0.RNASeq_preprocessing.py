@@ -360,7 +360,7 @@ def main():
     parser.add_argument('-t',"--biomarker_target_gene_type", choices=["protein_coding", "lincRNA", "both"], default="protein_coding", required=True)
     parser.add_argument('-s',"--sequence_type", default=None, type=str, required=True)
     parser.add_argument('-a',"--annotation_file", default="LncBook_Version2.0_all", type=str, required=True)
-    parser.add_argument('-h',"--HPC", type=str, default="FALSE", required=False)
+    parser.add_argument("--HPC", type=str, default="FALSE", required=False)
 
 
 
