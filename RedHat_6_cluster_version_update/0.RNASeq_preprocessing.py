@@ -32,7 +32,7 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
         gene_type_list = [biomarker_target_gene_type]
 
     from_PreProcessing = True
-    from_PreProcessing_submission = False
+    from_PreProcessing_submission = True
     from_FPKM_ReadCount_generation = True
 
     ## path relative
