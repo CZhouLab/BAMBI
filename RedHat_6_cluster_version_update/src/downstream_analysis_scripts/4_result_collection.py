@@ -17,7 +17,7 @@ import warnings
 
 
 
-def Jobstatus_Check(directory, biomarker_target_gene_type="protein_coding", dataset_name="Customized_Dataset", resubmit=False):
+def Jobstatus_Check(directory, biomarker_target_gene_type="protein_coding", dataset_name="Customized_Dataset", resubmit=False, HPC_parallel = False):
     ############################################################
     ### parameter need to set by user:
 
@@ -38,7 +38,10 @@ def Jobstatus_Check(directory, biomarker_target_gene_type="protein_coding", data
     else:
         dataset_name_list = [dataset_name]
 
-    src_path = "./src"
+    if not HPC_parallel:
+        src_path = "/usr/src/app/src"
+    else:
+        src_path = directory + "/src"
 
     gene_type_list = [biomarker_target_gene_type] # ["microarray", "protein_coding", "lincRNA", "CircRNA"]
 
@@ -348,7 +351,7 @@ def Jobstatus_Check(directory, biomarker_target_gene_type="protein_coding", data
                     report_dict[model]['FN'].append(report_df.iloc[0].at['FN'])
                     report_dict[model]['TP'].append(report_df.iloc[0].at['TP'])
 
-                    
+
                     report_dict[model]['feature_num'].append(report_df.iloc[0].at['feature_num'])
                     if model == "randomForest" or model == "stacking":
                         feature_list_path = current_Folder_path + "/" + ID + "/" + model + "_imp_features.txt"
@@ -481,6 +484,7 @@ def main():
                         default="protein_coding", required=True)
     parser.add_argument("--dataset_name", default="Customized_Dataset", type=str, required=False)
     parser.add_argument("--r", type=str, default="False", help="whether resubmit termiated job", required=False )
+    parser.add_argument('-h', "--HPC", type=str, default="FALSE", required=False)
     args = parser.parse_args()
 
     def t_or_f(fs):
@@ -490,12 +494,13 @@ def main():
         elif 'FALSE'.startswith(ua):
             return False
         else:
-            return False
+            return True
 
-    resubmit_requirment = t_or_f(args.r)
+    # resubmit_requirment = t_or_f(args.r)
+    HPC_parallel_opt = t_or_f(args.HPC)
 
     Jobstatus_Check(directory=args.directory, biomarker_target_gene_type=args.biomarker_target_gene_type,
-                                                   dataset_name=args.dataset_name, resubmit=resubmit_requirment)
+                                                   dataset_name=args.dataset_name, resubmit=False, HPC_parallel=HPC_parallel_opt)
     # pipeline_step_1(sample_name=args.sample_name, R1_input=args.R1_input, R2_input=args.R2_input, strandness=args.strandness, directory=args.directory)
 
 if __name__ == '__main__':
