@@ -384,8 +384,7 @@ def main():
 
     RNASeq_preprocessing(biomarker_target_gene_type=args.biomarker_target_gene_type, sequence_type=args.sequence_type,
                          annotation_file=args.annotation_file,
-                         inputCSV=args.inputCSV, 
-                         HPC_parallel=HPC_parallel_opt)
+                         inputCSV=args.inputCSV, HPC_parallel=HPC_parallel_opt)
 
     # stab_selection_main(folder_path=args.folder_path, file_name=args.train_file_name, testfile_name=args.test_file_name, threshold=args.threshold)
 
