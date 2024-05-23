@@ -44,13 +44,13 @@ To use BAMBI, you will need the following programs in your PATH:
 We also provide the Docker option for BAMBI usage. After you install docker, you can pull our image by:
 
 ```bash
-docker pull billyzh/bambi_test_0:latest
+docker pull billyzh/bambi_public:latest
 ```
 
 And you can use run this docker image to build a temporary enviroment(container of Docker) for BAMBI by:
 
 ```bash
-docker run -it --mount "type=bind,src=%cd%,target=/usr/src/data" billyzh/bambi_test_0 /bin/bash
+docker run -it --mount "type=bind,src=%cd%,target=/usr/src/data" billyzh/bambi_public /bin/bash
 ```
 
 After you built the temporary enviroment, you can run BAMBI same as non-Docker option like follow "Usage" Chapter.
@@ -73,13 +73,13 @@ python /usr/src/app/1.statitical_based_feature_selection_info_generation.py
 Before you run the RNA-Seq raw data proprocess step(Step 0), use the follow command to activate a relative environment:
 
 ```bash
-conda activate test_env_2
+conda activate proprocess_env
 ```
 
 Before you run the statitical based feature selection or downstream analysis(Step 1 & 2), use the follow command to activate a relative environment:
 
 ```bash
-conda activate test_env
+conda activate analysis_env
 ```
 
 ## Usage
