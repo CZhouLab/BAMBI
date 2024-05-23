@@ -213,7 +213,7 @@ def main():
     parser.add_argument('-F', "--RNASeq_FPKM_table_path", default=None, type=str, required=False)
     parser.add_argument('-R', "--RNASeq_ReadCount_table_path", default=None, type=str, required=False)
     parser.add_argument('-m', "--microarray_table_path", default=None, type=str, required=False)
-    parser.add_argument('-h', "--HPC", type=str, default="FALSE", required=False)
+    parser.add_argument("--HPC", type=str, default="FALSE", required=False)
 
     args = parser.parse_args()
 
