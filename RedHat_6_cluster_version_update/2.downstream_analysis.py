@@ -76,7 +76,7 @@ def main():
     parser.add_argument('-o', "--target_overlap_area_threshold", default=None, type=float, required=True)
     parser.add_argument('-n', "--dataset_name", default="Customized_Dataset", type=str, required=False)
     parser.add_argument("--r", type=str, default="False", help="whether resubmit termiated job" )
-    parser.add_argument('-h', "--HPC", type=str, default="FALSE", required=False)
+    parser.add_argument("--HPC", type=str, default="FALSE", required=False)
     args = parser.parse_args()
 
     def t_or_f(fs):
