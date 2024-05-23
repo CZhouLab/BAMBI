@@ -484,7 +484,7 @@ def main():
                         default="protein_coding", required=True)
     parser.add_argument("--dataset_name", default="Customized_Dataset", type=str, required=False)
     parser.add_argument("--r", type=str, default="False", help="whether resubmit termiated job", required=False )
-    parser.add_argument('-h', "--HPC", type=str, default="FALSE", required=False)
+    parser.add_argument("--HPC", type=str, default="FALSE", required=False)
     args = parser.parse_args()
 
     def t_or_f(fs):
