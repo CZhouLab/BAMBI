@@ -456,7 +456,7 @@ def main():
     parser.add_argument("--directory", default=None, type=str, required=True)
     parser.add_argument("--biomarker_target_gene_type", choices=["protein_coding", "lincRNA", "microarray"], default="protein_coding", required=True)
     parser.add_argument("--dataset_name", default="Customized_Dataset", type=str, required=False)
-    parser.add_argument('-h', "--HPC", type=str, default="FALSE", required=False)
+    parser.add_argument("--HPC", type=str, default="FALSE", required=False)
 
 
     args = parser.parse_args()
