@@ -46,7 +46,7 @@ def statitical_based_feature_selection_info_generation(biomarker_target_gene_typ
     # directory = os.getcwd()
     if RNASeq_FPKM_table_path is None and RNASeq_ReadCount_table_path is None and microarray_table_path is None:
         datatype = "BMGD_processed"
-        standard_file_path = directory + "/output/summary_step1.txt"
+        standard_file_path = output_directory + "/summary_step1.txt"
     elif RNASeq_FPKM_table_path is None and RNASeq_ReadCount_table_path is None and microarray_table_path is not None:
         datatype = "original_microarray"
     elif RNASeq_FPKM_table_path is not None and RNASeq_ReadCount_table_path is not None and microarray_table_path is None:
@@ -107,7 +107,7 @@ def statitical_based_feature_selection_info_generation(biomarker_target_gene_typ
             standard_ReadCount_df = pd.read_csv(RNASeq_ReadCount_table_path, sep="\t", index_col=0)
 
         elif datatype == "original_microarray":
-            run_Pipeline_step_2_2_6_para_1 = "./src/limmaDE/limma_Preprocessing.R"
+            run_Pipeline_step_2_2_6_para_1 = src_path + "/limmaDE/limma_Preprocessing.R"
 
             run_Pipeline_step_2_2_6_para_2 = microarray_table_path
             run_Pipeline_step_2_2_6_para_3 = microarray_logtransform
@@ -200,7 +200,8 @@ def statitical_based_feature_selection_info_generation(biomarker_target_gene_typ
         run_Pipeline_tem = subprocess.Popen(['python', preprocessing_python_script_path,
                                              '--gene_type_list', ' '.join(str(e) for e in [gene_type]),
                                              '--only_filter_num', str(0),
-                                             '--directory', partition_folder_path,
+                                             '--output_directory', output_directory,
+                                             '--src_path', src_path,
                                              '--DE_type', DE_type,
                                              '--filter_requirment_table_path', "./"])
 
