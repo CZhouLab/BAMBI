@@ -89,7 +89,7 @@ def job_submission(sample_name, strandness, directory, Known_splice_site, GTF_fi
 
 
 
-def preprocessing(gene_type_list, only_filter_num, directory, DE_type, filter_requirment_table_path):
+def preprocessing(gene_type_list, only_filter_num, output_directory, src_path, DE_type, filter_requirment_table_path):
 
 
     ### option relative
@@ -128,8 +128,8 @@ def preprocessing(gene_type_list, only_filter_num, directory, DE_type, filter_re
     ## path relative
     # directory = "/home/peng.zhou-umw/project/Biomarker_Detection/Biomarker_Detection_Paper/NewCluster_test/GSE54456_wilcox_New_FPKM"
 
-    output_directory = directory + "/output"
-    src_path = directory + "/src"
+    # output_directory = directory + "/output"
+    # src_path = directory + "/src"
 
     ## filter condition
     # DE_type = "wilcox" ## "wilcox", "DEseq2", "limma"
@@ -985,7 +985,14 @@ def preprocessing(gene_type_list, only_filter_num, directory, DE_type, filter_re
                                          }
 
                 current_time = time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
-                Copy_info_table_output_path = directory + '/' + gene_type + '_Gene_info_' + current_time + '.csv'
+
+                output_directory_parts = output_directory.split('/')
+                directory_path = '/'.join(output_directory_parts[:-1])
+
+
+
+
+                Copy_info_table_output_path = directory_path + '/' + gene_type + '_Gene_info_' + current_time + '.csv'
 
                 if os.path.exists(Copy_info_table_output_path):
                     os.remove(Copy_info_table_output_path)
@@ -1130,7 +1137,9 @@ def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--gene_type_list", nargs='+', default=["protein_coding", "lincRNA", "microarray"], required=True)
     parser.add_argument("--only_filter_num", default=None, type=int, required=True)
-    parser.add_argument("--directory", default=None, type=str, required=True)
+    parser.add_argument("--src_path", default=None, type=str, required=True)
+    parser.add_argument("--output_directory", default=None, type=str, required=True)
+
     parser.add_argument("--DE_type", default=None, type=str, required=True)
     parser.add_argument("--filter_requirment_table_path", default=None, type=str, required=True)
 
@@ -1139,7 +1148,7 @@ def main():
     args = parser.parse_args()
 
     preprocessing(gene_type_list=args.gene_type_list, only_filter_num=args.only_filter_num,
-                          directory=args.directory, DE_type=args.DE_type,
+                          src_path=args.src_path, output_directory=args.output_directory, DE_type=args.DE_type,
                           filter_requirment_table_path=args.filter_requirment_table_path)
 
 
