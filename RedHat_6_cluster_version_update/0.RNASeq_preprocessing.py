@@ -35,6 +35,8 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
     from_PreProcessing_submission = True
     from_FPKM_ReadCount_generation = True
 
+    input_df = pd.read_csv(inputCSV, sep=",")
+
     ## path relative
     if not HPC_parallel:
         directory = "/usr/src/app"
@@ -103,7 +105,7 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
         ExonLength_file = create_ExonLength_file_output
 
 
-    def job_submission(sample_name, strandness, src_path, output_directory, Known_splice_site, GTF_file, ExonLength_file, sequence_type, R1_input="NA", R2_input="NA", unpaired_input = "NA", HPC_parallel = False):
+    def job_submission(sample_name, strandness, src_path, output_directory, Known_splice_site, GTF_file, ExonLength_file, sequence_type, directory, R1_input="NA", R2_input="NA", unpaired_input = "NA", HPC_parallel = False):
 
         # output_directory = directory + "/output"
 
@@ -176,7 +178,7 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
 
     if from_PreProcessing:
 
-        input_df = pd.read_csv(inputCSV, sep=",")
+        # input_df = pd.read_csv(inputCSV, sep=",")
 
         sample_name_list = input_df["sample_name"].values.tolist()
         Label_list = input_df["Label"].values.tolist()
@@ -200,7 +202,7 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
                     strandness = Strandness_list[i]
                     JobID = job_submission(sample_name=sample_name, R1_input=R1_input, R2_input=R2_input, strandness=strandness,
                                            src_path=src_path, output_directory=output_directory, Known_splice_site=Known_splice_site, GTF_file=GTF_file,
-                                           ExonLength_file=ExonLength_file, sequence_type=sequence_type)
+                                           ExonLength_file=ExonLength_file, sequence_type=sequence_type, directory=directory)
                     Jobid_list.append(JobID)
             elif sequence_type == "Single":
                 for i in range(len(sample_name_list)):
@@ -209,7 +211,7 @@ def RNASeq_preprocessing(biomarker_target_gene_type = "protein_coding", sequence
                     strandness = Strandness_list[i]
                     JobID = job_submission(sample_name=sample_name, unpaired_input=unpaired_input, strandness=strandness,
                                            src_path=src_path, output_directory=output_directory, Known_splice_site=Known_splice_site, GTF_file=GTF_file,
-                                           ExonLength_file=ExonLength_file, sequence_type=sequence_type)
+                                           ExonLength_file=ExonLength_file, sequence_type=sequence_type, directory=directory)
                     Jobid_list.append(JobID)
 
 
