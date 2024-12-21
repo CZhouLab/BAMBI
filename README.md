@@ -128,7 +128,7 @@ The input table should contain:
 - If you need to preprocess RNA-Seq data, you need to download the annotation folder from follow path, and save it in the `src` folder.
 	https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sharing
 
-### Examples :
+**Examples:**
 ```bash
 python 0.RNASeq_preprocessing.py --inputCSV ./0.RNASeq_preprocessing_input_sample_Paired-End.csv --biomarker_target_gene_type protein_coding --sequence_type Paired --annotation_file LncBook_Version2.0_all 
 ```
@@ -145,18 +145,7 @@ This step generates a statistical metrics table for each gene, including:
 - `max_val`: Maximum expression value across samples (used for low-expression gene filtering).
 - `distribution_overlap_area`: Between-group estimate distribution overlap area.
 
-
 User can use this table to select thresholds for different metrics for downstream analysis, This table is saved as "./Gene_info.xlsx'.
-
-**Output Files:**
-
-- Statistical metrics table: `protein_coding_Gene_info.csv` or `lincRNA_Gene_info.csv` (saved in the current directory).
-
-**Notes:**
-
-- If using your own RNA-Seq data, provide FPKM and ReadCount tables.
-- If using your own microarray data, provide a microarray table.
-
 
 ```bash
 python 1.statitical_based_feature_selection_info_generation.py --biomarker_target_gene_type {protein_coding, lincRNA, microarray} [optional options]           
@@ -171,13 +160,19 @@ Options:
 
 ```
 
-### Examples :
+**Output Files:**
+
+- Statistical metrics table: `protein_coding_Gene_info.csv` or `lincRNA_Gene_info.csv` (saved in the current directory).
+
+**Notes:**
+
+- If using your own RNA-Seq data, provide FPKM and ReadCount tables.
+- If using your own microarray data, provide a microarray table.
+
+**Examples:**
 ```bash
 python 1.statitical_based_feature_selection_info_generation.py --biomarker_target_gene_type protein_coding --RNASeq_FPKM_table_path ./sample_data/FPKM_table.csv --RNASeq_ReadCount_table_path ./sample_data/ReadCount_table.csv
 ```
-
-
-
 
 ## Step 2: downstream analysis
 
@@ -186,11 +181,6 @@ After selecting thresholds for statistical feature selection, BAMBI automaticall
 - Selects genes based on provided thresholds and updates the gene table.
 - Performs machine learning-based feature selection.
 - Collects results and suggests candidate biomarkers.
-
-**Output Files:** (saved under `result_summary` directory):
-
-- Individual gene biomarker information: `summary_GeneType_high_frequency_gene.csv`
-- Gene panel biomarker information: `summary_GeneType_selected_models_stat_between_partitions.csv`
 
 ```bash
 python 2.downstream_analysis.py --biomarker_target_gene_type {protein_coding, lincRNA, microarray} [optional options]           
@@ -208,7 +198,14 @@ Arguments:
 
 ```
 
-### Examples :
+**Output Files:** (saved under `result_summary` directory):
+
+- Individual gene biomarker information: `summary_GeneType_high_frequency_gene.csv`
+- Gene panel biomarker information: `summary_GeneType_selected_models_stat_between_partitions.csv`
+
+
+
+**Examples:**
 ```bash
 python 2.downstream_analysis.py --biomarker_target_gene_type protein_coding --target_pvalue_type padj --target_pvalue_threshold 0.05 --target_foldchange_threshold 1 --target_maxmin_remove_threshold 1 --target_overlap_area_threshold 0.1 --dataset_name customized_name
 ```
