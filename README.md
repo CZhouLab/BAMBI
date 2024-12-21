@@ -60,7 +60,7 @@ For example:
 ### Examples:
 
 ```bash
-#General version
+# General version
 python 1.statitical_based_feature_selection_info_generation.py
 
 # Docker version
@@ -80,26 +80,32 @@ conda activate analysis_env
 
 ## Usage
 
-•       If you want to use your own RNA-Seq table or microarray table for BAMBI biomarker detection, you can skip the Step 0 RNA-Seq Preprocess
+### General Notes:
 
-•       Example RNA-Seq table and microarray table for testing are provided in "example_datasets" folder 
+- If you want to use your own RNA-Seq or microarray data for BAMBI biomarker detection, you can skip Step 0 (RNA-Seq Preprocessing).
+- Example RNA-Seq and microarray tables for testing are provided in the `example_datasets` folder.
+
+---
 
 ## Step 0: RNASeq_Preprocessing
 
-This script proprocess RNA-Seq raw data into FPKM and ReadCount table
+This script preprocesses RNA-Seq raw data into FPKM and ReadCount tables.
 
-it needs to input a table which includes the sequencing files information in "--inputCSV", relative sample files provided: 
+**Input Requirements:**
+A table that includes sequencing file information via the `--inputCSV` argument. The input table should contain:
 
-•       "sample_name"
+- `sample_name`
+- `Label`: "C" (Control) or "T" (Treatment)
+- Sequencing file paths:
+  - Single-end: `unpaired_input`
+  - Paired-end: `R1_input` and `R2_input`
+- `Strandness`: "first", "second", or "unstrand"
 
-•       Catergory information: "Label" ("C" for Control and "T" for "Treatment")
+**Output Files:** (saved under `output` directory):
 
-•       Sequencing file path ("unpaired_input" for Single-End, and "R1_input" & "R2_input" for Paired-End)
-
-•       Strandness information "Strandness" (""first", "second" or "unstrand")
-
-Output files(under "output" dir): FPKM table(summary_step1.txt.FPKM.ProteinCoding or summary_step1.txt.FPKM.lincRNA), ReadCount table(summary_step1.txt.ReadCount.ProteinCoding or summary_step1.txt.ReadCount.lincRNA)
-
+- FPKM table: `summary_step1.txt.FPKM.ProteinCoding` or `summary_step1.txt.FPKM.lincRNA`
+- ReadCount table: `summary_step1.txt.ReadCount.ProteinCoding` or `summary_step1.txt.ReadCount.lincRNA`
+  
 ### Remark: 
 
 •       Since RNA-Seq data preprocessing is time-consuming, this step only works in the high performance computing cluster in Linux
