@@ -4,40 +4,36 @@
 
 BAMBI (Biostatistics and Artificial-Intelligence integrated methods for Biomarker detection), to identify coding and non-coding RNA biomarkers for diagnosis and prognosis. BAMBI is a comprehensive RNA biomarker detection pipeline which can directly process RNA-seq data or microarray data without additional pre-processing and manual imputation. Compared to other methods, BAMBI can identify a small number of RNA biomarkers while still have a higher prediction performance than other methods. Thus, the putative biomarkers identified by BAMBI would be more easily adapted to clinical practice.
 
-Authors: Peng Zhou (peng.zhou@umassmed.edu), Chan Zhou (chan.zhou@umassmed.edu)
+**Authors**: Peng Zhou ([peng.zhou@umassmed.edu](mailto:peng.zhou@umassmed.edu)), Chan Zhou ([chan.zhou@umassmed.edu](mailto:chan.zhou@umassmed.edu))\
+**Maintainer**: Peng Zhou
 
-Maintainer: Peng Zhou
-
+---
 
 ## Prerequisites
 
 To use BAMBI, you will need the following programs in your PATH:
 
-•       python3 (>=3.7.3) 
+- **Python3 (>=3.7.3)**
+  - Python packages:
+    - `numpy`
+    - `pandas`
+    - `scikit-learn (>=0.22.1)`
+    - `kdepy` (install with: `conda install -c dmentipl kdepy`)
+    - `shap` (install with: `conda install -c conda-forge shap`)
+- **R (>=3.7.3)**
+  - R packages:
+    - `edgeR`
+    - `limma`
+    - `impute`
+    - `GenomicFeatures` (if using a customized annotation GTF file)
+- **RNA-seq preprocessing software**:
+  - `htseq (>=0.6.1)`
+  - `pysam (>=0.8.4)`
+  - `hisat2 (>=2.0.5)`
+  - `sambamba (>=0.6.8)`
+- **Operating System**: High-performance computing cluster in Linux (recommended)
 
-•       python packages:
-•       	numpy
-•       	pandas
-•       	scikit-learn (>=0.22.1)
-•       	kdepy (conda install -c dmentipl kdepy)
-•       	shap (conda install -c conda-forge shap)
-
-•       R (>=3.7.3) 
-
-•       R packages:
-•       	edgeR
-•       	limma
-•       	impute
-•       	GenomicFeatures (if you need to use customized annotation GTF file)
-
-    
-•       Software required for RNA-seq data preprocessing
-•       htseq (>=0.6.1)
-•       pysam (>=0.8.4)
-•       hisat2 (>=2.0.5)
-•       sambamba (>=0.6.8)
-
-•       OS: high performance computing cluster in Linux (suggested)
+---
 
 ## Dependency Docker Option
 
