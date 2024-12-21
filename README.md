@@ -106,7 +106,7 @@ Output files(under "output" dir): FPKM table(summary_step1.txt.FPKM.ProteinCodin
 
 ### Remark: 
 
-•       Because RNA-Seq data preprocess is very time consuming, this step only work in the high performance computing cluster in Linux
+•       Because RNA-Seq data preprocess is very time consuming, this step only works in the high performance computing cluster in Linux
 
 •       If you need to do the RNASeq Preprocessing, you need to download the annoation folder from follow path, and save it under the src folder
 	https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sharing
