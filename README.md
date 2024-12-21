@@ -2,7 +2,7 @@
 
 ## Introduction
 
-BAMBI (Biostatistics and Artificial-Intelligence integrated methods for Biomarker detection), to identify coding and non-coding RNA biomarkers for diagnosis and prognosis. BAMBI is a comprehensive RNA biomarker detection pipeline which can directly process RNA-seq data or microarray data without pre-processing and manual imputation. Compared to other methods, BAMBI can identify a small number of RNA biomarkers while still have a higher prediction performance than other methods. Thus, the putative biomarkers identified by BAMBI would have more easily adapted in clinical practice.
+BAMBI (Biostatistics and Artificial-Intelligence integrated methods for Biomarker detection), to identify coding and non-coding RNA biomarkers for diagnosis and prognosis. BAMBI is a comprehensive RNA biomarker detection pipeline which can directly process RNA-seq data or microarray data without additional pre-processing and manual imputation. Compared to other methods, BAMBI can identify a small number of RNA biomarkers while still have a higher prediction performance than other methods. Thus, the putative biomarkers identified by BAMBI would be more easily adapted to clinical practice.
 
 Authors: Peng Zhou (peng.zhou@umassmed.edu), Chan Zhou (chan.zhou@umassmed.edu)
 
@@ -28,10 +28,10 @@ To use BAMBI, you will need the following programs in your PATH:
 •       	edgeR
 •       	limma
 •       	impute
-•       	GenomicFeatures (if you need to use customize annotation GTF file)
+•       	GenomicFeatures (if you need to use customized annotation GTF file)
 
     
-•       Softwares required for RNA-seq data preprocessing
+•       Software required for RNA-seq data preprocessing
 •       htseq (>=0.6.1)
 •       pysam (>=0.8.4)
 •       hisat2 (>=2.0.5)
@@ -47,13 +47,13 @@ We also provide the Docker option for BAMBI usage. After you install docker, you
 docker pull billyzh/bambi_public:latest
 ```
 
-And you can use run this docker image to build a temporary enviroment(container of Docker) for BAMBI by:
+And you can use run this docker image to build a temporary environment(container of Docker) for BAMBI by:
 
 ```bash
 docker run -it --mount "type=bind,src=%cd%,target=/usr/src/data" billyzh/bambi_public /bin/bash
 ```
 
-After you built the temporary enviroment, you can run BAMBI same as non-Docker option like follow "Usage" Chapter.
+Once the temporary environment is built, you can run BAMBI same as non-Docker option like follow "Usage" Chapter.
 
 In the docker version, all scripts have included in the docker image. 
 
@@ -70,7 +70,7 @@ python 1.statitical_based_feature_selection_info_generation.py
 python /usr/src/app/1.statitical_based_feature_selection_info_generation.py
 ```
 
-Before you run the RNA-Seq raw data proprocess step(Step 0), use the follow command to activate a relative environment:
+Before you run the RNA-Seq raw data preprocess step(Step 0), use the follow command to activate a relative environment:
 
 ```bash
 conda activate proprocess_env
@@ -92,7 +92,7 @@ conda activate analysis_env
 
 This script proprocess RNA-Seq raw data into FPKM and ReadCount table
 
-it needs to input a table which includes the sequecning files information in "--inputCSV", relative sample files provided: 
+it needs to input a table which includes the sequencing files information in "--inputCSV", relative sample files provided: 
 
 •       "sample_name"
 
@@ -106,9 +106,9 @@ Output files(under "output" dir): FPKM table(summary_step1.txt.FPKM.ProteinCodin
 
 ### Remark: 
 
-•       Because RNA-Seq data preprocess is very time consuming, this step only works in the high performance computing cluster in Linux
+•       Since RNA-Seq data preprocessing is time-consuming, this step only works in the high performance computing cluster in Linux
 
-•       If you need to do the RNASeq Preprocessing, you need to download the annoation folder from follow path, and save it under the src folder
+•       If you need to do the RNASeq Preprocessing, you need to download the annotation folder from follow path, and save it under the src folder
 	https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sharing
 
 ```bash
@@ -116,7 +116,7 @@ python 0.RNASeq_preprocessing.py --inputCSV INFO_TABLE_PATH --biomarker_target_g
 
 Arguments:
 
-	--inputCSV [-i]			 # path to your sequecning files information table
+	--inputCSV [-i]			 # path to your sequencing files information table
 	--biomarker_target_gene_type[-t] # target biomarker gene type, "protein_coding" or "lincRNA"
 	--sequence_type [-s]		 # sequence files type, "Single" or "Paired"
 	--annotation_file [-a] 		 # annotation file usage, ("LncBook_Version2.0_all","gencode_v22", "gencode_v29", "gencode_v37", or any path to your customized gtf)
@@ -136,7 +136,7 @@ it will generate a statistical metrics table for each genes, include:
 
 •       "pvalue": pvalue from selected differential expression analysis
 
-•       "padj": adjust pvalue from selected differential expression analysis
+•       "padj": adjusted p-value from selected differential expression analysis
 
 •       "abs(log2(fold-change))": fold change from Fold Change analysis 
 
@@ -144,7 +144,7 @@ it will generate a statistical metrics table for each genes, include:
 
 •       "distribution_overlap_area": between-group estimate distribution overlap area
 
-User can use this table to select thresholds for different metrics for downstream analysis, this table saved in "./Gene_info.xlsx'.
+User can use this table to select thresholds for different metrics for downstream analysis, This table is saved as "./Gene_info.xlsx'.
 
 Output files(under current dir):statistical metrics table named protein_coding_Gene_info.csv or lincRNA_Gene_info.csv
 
@@ -180,7 +180,7 @@ python 1.statitical_based_feature_selection_info_generation.py --biomarker_targe
 
 After you selected the thresholds for statistical based feature selection, BAMBI will automatically do the follow steps:
 
-•       selected genes based on provide thresholds, and generate relative update gene table
+•       selected genes based on provided thresholds, and generate corresponding updated gene table
 
 •       machine learning based feature selection
 
