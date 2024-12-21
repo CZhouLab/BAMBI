@@ -92,7 +92,8 @@ conda activate analysis_env
 This script preprocesses RNA-Seq raw data into FPKM and ReadCount tables.
 
 **Input Requirements:**
-A table that includes sequencing file information via the `--inputCSV` argument. The input table should contain:
+A table that includes sequencing file information via the `--inputCSV` argument(example provided `0.RNASeq_preprocessing_input_sample_Paired-End.csv` and `0.RNASeq_preprocessing_input_sample_Single-End.csv` ). 
+The input table should contain:
 
 - `sample_name`
 - `Label`: "C" (Control) or "T" (Treatment)
