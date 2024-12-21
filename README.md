@@ -76,7 +76,7 @@ Before you run the RNA-Seq raw data proprocess step(Step 0), use the follow comm
 conda activate proprocess_env
 ```
 
-Before you run the statitical based feature selection or downstream analysis(Step 1 & 2), use the follow command to activate a relative environment:
+Before you run the statistical based feature selection or downstream analysis(Step 1 & 2), use the follow command to activate a relative environment:
 
 ```bash
 conda activate analysis_env
@@ -130,9 +130,9 @@ python 0.RNASeq_preprocessing.py --inputCSV ./0.RNASeq_preprocessing_input_sampl
 
 
 
-## Step 1: statitical based feature selection info generation
+## Step 1: statistical based feature selection info generation
 
-it will generate a statitical metrics table for each genes, include: 
+it will generate a statistical metrics table for each genes, include: 
 
 •       "pvalue": pvalue from selected differential expression analysis
 
@@ -146,7 +146,7 @@ it will generate a statitical metrics table for each genes, include:
 
 User can use this table to select thresholds for different metrics for downstream analysis, this table saved in "./Gene_info.xlsx'.
 
-Output files(under current dir):statitical metrics table named protein_coding_Gene_info.csv or lincRNA_Gene_info.csv
+Output files(under current dir):statistical metrics table named protein_coding_Gene_info.csv or lincRNA_Gene_info.csv
 
 ### Remark: 
 
@@ -178,7 +178,7 @@ python 1.statitical_based_feature_selection_info_generation.py --biomarker_targe
 
 ## Step 2: downstream analysis
 
-After you selected the thresholds for statitical based feature selection, BAMBI will automatically do the follow steps:
+After you selected the thresholds for statistical based feature selection, BAMBI will automatically do the follow steps:
 
 •       selected genes based on provide thresholds, and generate relative update gene table
 
