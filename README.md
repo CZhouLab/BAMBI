@@ -59,20 +59,13 @@ For example:
 
 ### Examples:
 
-#### General version:
-
 ```bash
+#General version
 python 1.statitical_based_feature_selection_info_generation.py
-```
 
-#### Docker version:
-
-```bash
+# Docker version
 python /usr/src/app/1.statitical_based_feature_selection_info_generation.py
 ```
-
-### Activating Conda Environments:
-
 Before you run the RNA-Seq raw data preprocess step(Step 0), use the follow command to activate a relative environment:
 
 ```bash
