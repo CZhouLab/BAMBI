@@ -144,13 +144,14 @@ This step generates a statistical metrics table for each gene, including:
 
 User can use this table to select thresholds for different metrics for downstream analysis, This table is saved as "./Gene_info.xlsx'.
 
-Output files(under current dir):statistical metrics table named protein_coding_Gene_info.csv or lincRNA_Gene_info.csv
+**Output Files:**
 
-### Remark: 
+- Statistical metrics table: `protein_coding_Gene_info.csv` or `lincRNA_Gene_info.csv` (saved in the current directory).
 
-•       If you want to use your own RNA-Seq table, you need to provide both FPKM and ReadCount tables
+**Notes:**
 
-•       If you want to use your own microarray table, you need to provide microarray tables
+- If using your own RNA-Seq data, provide FPKM and ReadCount tables.
+- If using your own microarray data, provide a microarray table.
 
 
 ```bash
@@ -176,15 +177,16 @@ python 1.statitical_based_feature_selection_info_generation.py --biomarker_targe
 
 ## Step 2: downstream analysis
 
-After you selected the thresholds for statistical based feature selection, BAMBI will automatically do the follow steps:
+After selecting thresholds for statistical feature selection, BAMBI automatically:
 
-•       selected genes based on provided thresholds, and generate corresponding updated gene table
+- Selects genes based on provided thresholds and updates the gene table.
+- Performs machine learning-based feature selection.
+- Collects results and suggests candidate biomarkers.
 
-•       machine learning based feature selection
+**Output Files:** (saved under `result_summary` directory):
 
-•       collect results and provide suggested candidate biomarkers
-
-Output files(under "result_summary" dir): individual gene biomarker information(summary_GeneType_high_frequency_gene.csv), gene panel biomarker information(summary_GeneType_selected_models_stat_between_partitions.csv)
+- Individual gene biomarker information: `summary_GeneType_high_frequency_gene.csv`
+- Gene panel biomarker information: `summary_GeneType_selected_models_stat_between_partitions.csv`
 
 ```bash
 python 2.downstream_analysis.py --biomarker_target_gene_type {protein_coding, lincRNA, microarray} [optional options]           
