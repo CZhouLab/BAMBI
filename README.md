@@ -133,17 +133,14 @@ python 0.RNASeq_preprocessing.py --inputCSV ./0.RNASeq_preprocessing_input_sampl
 
 ## Step 1: statistical based feature selection info generation
 
-it will generate a statistical metrics table for each genes, include: 
+This step generates a statistical metrics table for each gene, including:
 
-•       "pvalue": pvalue from selected differential expression analysis
+- `pvalue`: P-value from differential expression analysis.
+- `padj`: Adjusted p-value.
+- `abs(log2(fold-change))`: Fold-change from analysis.
+- `max_val`: Maximum expression value across samples (used for low-expression gene filtering).
+- `distribution_overlap_area`: Between-group estimate distribution overlap area.
 
-•       "padj": adjusted p-value from selected differential expression analysis
-
-•       "abs(log2(fold-change))": fold change from Fold Change analysis 
-
-•       "max_val": the maximum expression in all sample, used for Low-Expression Genes Filter  
-
-•       "distribution_overlap_area": between-group estimate distribution overlap area
 
 User can use this table to select thresholds for different metrics for downstream analysis, This table is saved as "./Gene_info.xlsx'.
 
