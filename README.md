@@ -49,22 +49,29 @@ And you can use run this docker image to build a temporary environment(container
 docker run -it --mount "type=bind,src=%cd%,target=/usr/src/data" billyzh/bambi_public /bin/bash
 ```
 
-Once the temporary environment is built, you can run BAMBI same as non-Docker option like follow "Usage" Chapter.
+Once the temporary environment is built, you can run BAMBI as described in the "Usage" section.
 
-In the docker version, all scripts have included in the docker image. 
-
-When executing Python scripts, please use the full path to the script(/usr/src/app):
+In the Docker version, all scripts are included in the Docker image.
+ 
+When executing Python scripts, use their full path (e.g., `/usr/src/app`):
 
 For example:
 
-### Examples :
-```bash
-#General version
-python 1.statitical_based_feature_selection_info_generation.py
+### Examples:
 
-# Docker version
+#### General version:
+
+```bash
+python 1.statitical_based_feature_selection_info_generation.py
+```
+
+#### Docker version:
+
+```bash
 python /usr/src/app/1.statitical_based_feature_selection_info_generation.py
 ```
+
+### Activating Conda Environments:
 
 Before you run the RNA-Seq raw data preprocess step(Step 0), use the follow command to activate a relative environment:
 
