@@ -91,6 +91,18 @@ conda activate analysis_env
 
 This script preprocesses RNA-Seq raw data into FPKM and ReadCount tables.
 
+```bash
+python 0.RNASeq_preprocessing.py --inputCSV INFO_TABLE_PATH --biomarker_target_gene_type {protein_coding, lincRNA} --sequence_type {Single, Paired} --annotation_file ANNOTATION_NAME            
+
+Arguments:
+
+	--inputCSV [-i]			 # path to your sequencing files information table
+	--biomarker_target_gene_type[-t] # target biomarker gene type, "protein_coding" or "lincRNA"
+	--sequence_type [-s]		 # sequence files type, "Single" or "Paired"
+	--annotation_file [-a] 		 # annotation file usage, ("LncBook_Version2.0_all","gencode_v22", "gencode_v29", "gencode_v37", or any path to your customized gtf)
+
+```
+
 **Input Requirements:**
 A table that includes sequencing file information via the `--inputCSV` argument
 
@@ -115,18 +127,6 @@ The input table should contain:
 - Since RNA-Seq data preprocessing is time-consuming, this step only works in the high performance computing cluster in Linux
 - If you need to preprocess RNA-Seq data, you need to download the annotation folder from follow path, and save it in the `src` folder.
 	https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sharing
-
-```bash
-python 0.RNASeq_preprocessing.py --inputCSV INFO_TABLE_PATH --biomarker_target_gene_type {protein_coding, lincRNA} --sequence_type {Single, Paired} --annotation_file ANNOTATION_NAME            
-
-Arguments:
-
-	--inputCSV [-i]			 # path to your sequencing files information table
-	--biomarker_target_gene_type[-t] # target biomarker gene type, "protein_coding" or "lincRNA"
-	--sequence_type [-s]		 # sequence files type, "Single" or "Paired"
-	--annotation_file [-a] 		 # annotation file usage, ("LncBook_Version2.0_all","gencode_v22", "gencode_v29", "gencode_v37", or any path to your customized gtf)
-
-```
 
 ### Examples :
 ```bash
