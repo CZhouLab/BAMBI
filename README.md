@@ -106,11 +106,10 @@ A table that includes sequencing file information via the `--inputCSV` argument.
 - FPKM table: `summary_step1.txt.FPKM.ProteinCoding` or `summary_step1.txt.FPKM.lincRNA`
 - ReadCount table: `summary_step1.txt.ReadCount.ProteinCoding` or `summary_step1.txt.ReadCount.lincRNA`
   
-### Remark: 
+**Notes:**
 
-•       Since RNA-Seq data preprocessing is time-consuming, this step only works in the high performance computing cluster in Linux
-
-•       If you need to do the RNASeq Preprocessing, you need to download the annotation folder from follow path, and save it under the src folder
+- Since RNA-Seq data preprocessing is time-consuming, this step only works in the high performance computing cluster in Linux
+- If you need to preprocess RNA-Seq data, you need to download the annotation folder from follow path, and save it in the `src` folder.
 	https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sharing
 
 ```bash
