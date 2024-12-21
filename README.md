@@ -37,7 +37,7 @@ To use BAMBI, you will need the following programs in your PATH:
 
 ## Dependency Docker Option
 
-We also provide the Docker option for BAMBI usage. After you install docker, you can pull our image by:
+We provide a Docker option for BAMBI usage. After installing Docker, you can pull our image by:
 
 ```bash
 docker pull billyzh/bambi_public:latest
@@ -53,9 +53,7 @@ Once the temporary environment is built, you can run BAMBI as described in the "
 
 In the Docker version, all scripts are included in the Docker image.
  
-When executing Python scripts, use their full path (e.g., `/usr/src/app`):
-
-For example:
+When executing Python scripts, use their full path (e.g., `/usr/src/app`), for example:
 
 ### Examples:
 
@@ -66,6 +64,9 @@ python 1.statitical_based_feature_selection_info_generation.py
 # Docker version
 python /usr/src/app/1.statitical_based_feature_selection_info_generation.py
 ```
+
+### Activating Conda Environments in Docker:
+
 Before you run the RNA-Seq raw data preprocess step(Step 0), use the follow command to activate a relative environment:
 
 ```bash
@@ -124,7 +125,7 @@ The input table should contain:
   
 **Notes:**
 
-- Since RNA-Seq data preprocessing is time-consuming, this step only works in the high performance computing cluster in Linux
+- RNA-Seq data preprocessing is time-consuming and requires a high-performance computing cluster in Linux.
 - If you need to preprocess RNA-Seq data, you need to download the annotation folder from follow path, and save it in the `src` folder.
 	https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sharing
 
@@ -148,7 +149,7 @@ This step generates a statistical metrics table for each gene, including:
 User can use this table to select thresholds for different metrics for downstream analysis, This table is saved as "./Gene_info.xlsx'.
 
 ```bash
-python 1.statitical_based_feature_selection_info_generation.py --biomarker_target_gene_type {protein_coding, lincRNA, microarray} [optional options]           
+python 1.statitical_based_feature_selection_info_generation.py --biomarker_target_gene_type {protein_coding, lincRNA, microarray} [options]           
 
 Arguments:
 
