@@ -59,10 +59,10 @@ When executing Python scripts, use their full path (e.g., `/usr/src/app`), for e
 
 ```bash
 # General version
-python 1.statitical_based_feature_selection_info_generation.py
+python 1.statistical_based_feature_selection_info_generation.py
 
 # Docker version
-python /usr/src/app/1.statitical_based_feature_selection_info_generation.py
+python /usr/src/app/1.statistical_based_feature_selection_info_generation.py
 ```
 
 ### Activating Conda Environments in Docker:
@@ -70,7 +70,7 @@ python /usr/src/app/1.statitical_based_feature_selection_info_generation.py
 Before you run the RNA-Seq raw data preprocess step(Step 0), use the follow command to activate a relative environment:
 
 ```bash
-conda activate proprocess_env
+conda activate preprocess_env
 ```
 
 Before you run the statistical based feature selection or downstream analysis(Step 1 & 2), use the follow command to activate a relative environment:
@@ -149,7 +149,7 @@ This step generates a statistical metrics table for each gene, including:
 User can use this table to select thresholds for different metrics for downstream analysis, This table is saved as "./Gene_info.xlsx'.
 
 ```bash
-python 1.statitical_based_feature_selection_info_generation.py --biomarker_target_gene_type {protein_coding, lincRNA, microarray} [options]           
+python 1.statistical_based_feature_selection_info_generation.py --biomarker_target_gene_type {protein_coding, lincRNA, microarray} [options]           
 
 Arguments:
 
@@ -172,7 +172,7 @@ Options:
 
 **Examples:**
 ```bash
-python 1.statitical_based_feature_selection_info_generation.py --biomarker_target_gene_type protein_coding --RNASeq_FPKM_table_path ./sample_data/FPKM_table.csv --RNASeq_ReadCount_table_path ./sample_data/ReadCount_table.csv
+python 1.statistical_based_feature_selection_info_generation.py --biomarker_target_gene_type protein_coding --RNASeq_FPKM_table_path ./sample_data/FPKM_table.csv --RNASeq_ReadCount_table_path ./sample_data/ReadCount_table.csv
 ```
 
 ## Step 2: downstream analysis
