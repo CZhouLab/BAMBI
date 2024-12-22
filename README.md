@@ -40,7 +40,7 @@ To use BAMBI, you will need the following programs in your PATH:
 We provide a Docker option for BAMBI usage. After installing Docker, you can pull our image by:
 
 ```bash
-docker pull billyzh/bambi_public:latest
+docker pull billyzh/bambi_public_20241220:latest
 ```
 
 And you can use run this docker image to build a temporary environment(container of Docker) for BAMBI by:
