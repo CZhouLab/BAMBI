@@ -85,7 +85,7 @@ conda activate analysis_env
 
 - If you want to use your own RNA-Seq or microarray data for BAMBI biomarker detection, you can skip Step 0 (RNA-Seq Preprocessing).
 - Example RNA-Seq and microarray tables for testing are provided in the `example_datasets` folder.
-
+- All data used in this study(processed RNA-Seq and microarray data) are available at https://drive.google.com/drive/folders/1hrhTFCq1-CbVDPlxRyFxUkQO1RndEdBk?usp=sharing.
 ---
 
 ## Step 0: RNASeq_Preprocessing
@@ -127,7 +127,7 @@ The input table should contain:
 
 - RNA-Seq data preprocessing is time-consuming and requires a high-performance computing cluster in Linux.
 - If you need to preprocess RNA-Seq data, you need to download the annotation folder from follow path, and save it in the `src` folder.
-	https://drive.google.com/drive/folders/1534bNkl0DalPEzxiuYDwA_SR0cW4T7UA?usp=sharing
+	https://drive.google.com/drive/folders/1QFf_8uyiMqApuF51nYEeaGZG9hQlcbhC?usp=sharing
 
 **Examples:**
 ```bash
