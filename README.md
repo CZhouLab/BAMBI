@@ -31,7 +31,7 @@ To use BAMBI, you will need the following programs in your PATH:
   - `pysam (>=0.8.4)`
   - `hisat2 (>=2.0.5)`
   - `sambamba (>=0.6.8)`
-- **Operating System**: High-performance computing cluster in Linux (recommended)
+- **Operating System**: Linux
 
 ---
 
@@ -125,7 +125,7 @@ The input table should contain:
   
 **Notes:**
 
-- RNA-Seq data preprocessing is time-consuming and requires a high-performance computing cluster in Linux.
+- RNA-Seq data preprocessing is time-consuming, and a high-performance computing cluster is recommended. This step has been tested on Red Hat Enterprise Linux clusters with IBM Spectrum LSF batch job scheduling.
 - If you need to preprocess RNA-Seq data, you need to download the annotation folder from follow path, and save it in the `src` folder.
 	https://drive.google.com/drive/folders/1QFf_8uyiMqApuF51nYEeaGZG9hQlcbhC?usp=sharing
 
