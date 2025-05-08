@@ -155,7 +155,7 @@ def Jobstatus_Check(directory, biomarker_target_gene_type="protein_coding", data
             bjobs_trans = StringIO(bjobs_str)
             df_bjobs = pd.read_csv(bjobs_trans, index_col=None)
             JobID_list = df_bjobs['JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME'].map(lambda x:x.split()[0]).values.tolist()
-            JobStatus_list = df_bjobs['JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME'].map(lambda x:x.split()[2]).values.tolist()
+            JobStatus_list = df_bjobs['JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME'].map(lambda x: x.split()[2] if len(x.split()) > 2 else 'PENDING').values.tolist()
             # df_run_status = pd.DataFrame({"JobID":JobID_list, "Status" : JobStatus_list})
 
         record_df = pd.read_csv(ML_path + '/record.csv', index_col=None)
