@@ -418,7 +418,12 @@ def statitical_based_feature_selection_gene_filter(directory, biomarker_target_g
         else:
             overall_FPKM_df_transform = (overall_FPKM_df) / (overall_FPKM_df.max(axis=0))
 
-        for tem_num in range(3):
+        if len(filtered_Gene_list) >= 3:
+            print_number = 3
+        else:
+            print_number = len(filtered_Gene_list)
+
+        for tem_num in range(print_number):
             tem_gene = filtered_Gene_list[tem_num]
             tem_expression_list = overall_FPKM_df_transform[tem_gene].tolist()
             print(tem_gene + " max:" + str(max(tem_expression_list)) + " min:" + str(min(tem_expression_list)))
